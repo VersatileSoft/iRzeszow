@@ -5,7 +5,7 @@ const initState = {
    }
 }
 
-const dataReducer = (state = initState, action) =>{
+const updatePreferencesReducer = (state = initState, action) =>{
     switch(action.type){
         case 'UPDATE_PREFERENCES':
             return{
@@ -21,4 +21,4 @@ const dataReducer = (state = initState, action) =>{
     }
 }
 
-export default dataReducer;
+export default updatePreferencesReducer;

@@ -4,18 +4,21 @@ const initState = {
                         //2 - company info
                         //3 - preferences
 
-    ip: "ip"
+    ip: "https://irzeszowwebapi.azurewebsites.net/api/"
  }
  
  const globalReducer = (state = initState, action) =>{
     switch(action.type) {
-        case 'SET_REGISTER_STATE':
+        case 'UPDATE_REGISTER_STATE':
             return {
                     ...state,
-                    [state.registerState]: action
+                    registerState: action.registerState
                 }
+
+        default:
+        return state;
     }
-     return state;
+     
  }
  
  export default globalReducer;

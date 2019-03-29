@@ -5,10 +5,6 @@ import Logo from '../images/logo_transparent.png';
 
 class Main extends Component {
 
-    componentDidMount(){
-        console.log(this.props)
-    }
-
     handleClick = () =>{
         this.props.history.push('/rezerwacja')
     }
@@ -18,7 +14,7 @@ class Main extends Component {
             <div>
                 <header>
                     <div className="logo">
-                        <img src={Logo} />
+                        <img src={Logo} alt="logo" />
                     </div>
                     <div className="list">
                         <div>Start</div>
