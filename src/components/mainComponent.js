@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import '../styles/MainComponent.scss';
+import Logo from '../images/logo_transparent.png';
 
 class Main extends Component {
 
@@ -9,12 +10,12 @@ class Main extends Component {
             <div>
                 <header>
                     <div className="logo">
-                        iRzeszow
+                        <img src={Logo} />
                     </div>
                     <div className="list">
-                        <div>1</div>
-                        <div>2</div>
-                        <div>3</div>
+                        <div>Start</div>
+                        <div>Ustawienia</div>
+                        <div>Wyloguj</div>
                     </div>
                 </header>
                 <section className="main-square">
