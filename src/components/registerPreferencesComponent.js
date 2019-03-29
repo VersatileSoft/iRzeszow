@@ -4,7 +4,8 @@ import { Form, Field } from 'react-final-form';
 import { TextField, NumberTextField } from 'react-final-form-antd';
 import { Input, Switch } from 'antd';
 import CustomField from './CustomField';
-import { updatePreferences } from "../actions/signUpActions/updateActions"
+import { updatePreferences } from "../actions/signUpActions/updateActions/updatePreferences";
+import { updateRegisterState } from '../actions/signUpActions/updateActions/updateRegisterState';
 
 class RegisterPreferencesComponent extends Component {
 
@@ -12,8 +13,8 @@ class RegisterPreferencesComponent extends Component {
         console.log("CCA");
     }
 
-    handleChange = () => {
-        
+    handleChange = (name, value) => {
+        this.props.updatePreferences(name,value);
     }
 
     validateForm = () => {
@@ -21,6 +22,7 @@ class RegisterPreferencesComponent extends Component {
     }
 
     render() {
+        console.log(this.props.preferencesData.profession)
         return (
             <Form 
                 onSubmit={this.submitForm}
@@ -30,7 +32,7 @@ class RegisterPreferencesComponent extends Component {
                         <CustomField
                             name={"Podaj nazwę"}
                             component={TextField}
-                            onChange={ e => {this.handleChange('name', e.target.value)}}
+                            onChange={ e => {this.handleChange('profession', e.target.value)}}
                         />
 
                         <CustomField
@@ -94,7 +96,8 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
     return {
-       updatePreferences: (name,value) => {dispatch(updatePreferences(name, value))}
+       updatePreferences: (name,value) => {dispatch(updatePreferences(name, value))},
+       updateRegisterState: (registerState) => {dispatch(updateRegisterState(registerState))}
     }
   }
 

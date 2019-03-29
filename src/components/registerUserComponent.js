@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-
 import { Form, Field } from 'react-final-form';
 import { TextField, NumberTextField } from 'react-final-form-antd';
-
 import { Input, Switch } from 'antd';
-
 import CustomField from './CustomField';
+import { connect } from 'react-redux';
+import { updateRegisterState } from '../actions/signUpActions/updateActions/updateRegisterState';
 
 class RegisterUserComponent extends Component {
 
@@ -85,7 +84,12 @@ class RegisterUserComponent extends Component {
             />
         );
     }
-
 }
 
-export default RegisterUserComponent;
+const mapDispatchToProps = (dispatch) =>{
+    return {
+       updateRegisterState: (registerState) => {dispatch(updateRegisterState(registerState))}
+    }
+  }
+
+export default connect(null, mapDispatchToProps)(RegisterUserComponent);

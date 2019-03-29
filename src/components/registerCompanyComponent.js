@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { updateRegisterState } from '../actions/signUpActions/updateActions/updateRegisterState';
 
 class RegisterCompanyComponent extends Component {
 
@@ -8,7 +10,12 @@ class RegisterCompanyComponent extends Component {
             </div>
         )
     }
-
 }
 
-export default RegisterCompanyComponent;
+const mapDispatchToProps = (dispatch) =>{
+    return {
+       updateRegisterState: (registerState) => {dispatch(updateRegisterState(registerState))}
+    }
+  }
+
+export default connect(null, mapDispatchToProps)(RegisterCompanyComponent);
