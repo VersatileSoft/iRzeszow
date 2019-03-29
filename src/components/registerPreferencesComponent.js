@@ -1,5 +1,4 @@
-import { Component } from 'react';
-import { Form } from 'final-form';
+import React, { Component } from 'react';
 
 import { Form, Field } from 'react-final-form';
 import { TextField } from 'react-final-form-antd';
@@ -8,28 +7,33 @@ import { Input } from 'antd';
 
 import CustomField from './CustomField';
 
-class RegisterPreferenesComponent extends Component {
+class RegisterPreferencesComponent extends Component {
+
+    submitForm() {
+        console.log("CCA");
+    }
 
     handleChange() {
-        print("AA");
+        console.log("AA");
     }
 
     validateForm() {
-        print("BB");
+        console.log("BB");
     }
 
     render() {
         return (
-            <From 
-                onSubmit={handleChange}
-                validate={validateForm}
+            <Form 
+                onSubmit={this.submitForm}
+                validate={this.validateForm}
                 render={({ handleSubmit, pristine, invalid }) => (
-                    <Field
+                    <CustomField
                         name={"Podaj nazwę"}
                         component={TextField}
+                        onChange={this.handleChange}
                     >
 
-                    </Field>
+                    </CustomField>
                 )}
             />
         );
@@ -37,4 +41,4 @@ class RegisterPreferenesComponent extends Component {
 
 }
 
-export default SignBaseComponent;
+export default RegisterPreferencesComponent;
