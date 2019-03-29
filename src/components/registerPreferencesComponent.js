@@ -1,16 +1,44 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
-import '../styles/signBaseComponent.scss';
+import { Form, Field } from 'react-final-form';
+import { TextField } from 'react-final-form-antd';
 
-class RegisterPreferenesComponent extends Component {
+import { Input } from 'antd';
+
+import CustomField from './CustomField';
+
+class RegisterPreferencesComponent extends Component {
+
+    submitForm() {
+        console.log("CCA");
+    }
+
+    handleChange() {
+        console.log("AA");
+    }
+
+    validateForm() {
+        console.log("BB");
+    }
 
     render() {
         return (
-            <div>
-            </div>
-        )
+            <Form 
+                onSubmit={this.submitForm}
+                validate={this.validateForm}
+                render={({ handleSubmit, pristine, invalid }) => (
+                    <CustomField
+                        name={"Podaj nazwę"}
+                        component={TextField}
+                        onChange={this.handleChange}
+                    >
+
+                    </CustomField>
+                )}
+            />
+        );
     }
 
 }
 
-export default SignBaseComponent;
+export default RegisterPreferencesComponent;
