@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import '../styles/register.scss';
+import '../styles/MainComponent.scss';
 
-class SignBaseComponent extends Component {
+class Main extends Component {
 
     render() {
         return (
@@ -28,17 +28,25 @@ class SignBaseComponent extends Component {
                     </div>
                     <div className="rest">
                         <div className="adv">
-                        
+                            adv
                         </div>
                         <div className="smallest-squares">
-                        
+                            <div className="smallest-square-1">
+                                content
+                            </div>
+                            <div className="smallest-square-2">
+                                content
+                            </div>
                         </div>
                     </div>
                 </section>
+                <footer>
+                    content
+                </footer>
             </div>
         )
     }
 
 }
 
-export default SignBaseComponent;
+export default Main;
