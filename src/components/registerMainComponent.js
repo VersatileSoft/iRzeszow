@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import RegisterCompanyComponent from './registerCompanyComponent';
 import RegisterPreferencesComponent from './registerPreferencesComponent';
@@ -14,11 +13,11 @@ class RegisterMainComponent extends Component {
         let component = null;
         switch (this.props.registerState) {
             case 2: 
-                component = <RegisterCompanyComponent/>
+                component = <RegisterCompanyComponent/>; break;
             case 3: 
-                component = <RegisterPreferencesComponent/>
+                component = <RegisterPreferencesComponent/>; break;
             default:
-                component = <RegisterUserComponent/>
+                component = <RegisterUserComponent/>; break;
         }
         return (
             component
