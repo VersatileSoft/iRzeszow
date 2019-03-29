@@ -10,7 +10,7 @@ class Main extends Component {
             <div>
                 <header>
                     <div className="logo">
-                        <img src={Logo} />
+                        <img src={Logo} alt="logo"/>
                     </div>
                     <div className="list">
                         <div>Start</div>
