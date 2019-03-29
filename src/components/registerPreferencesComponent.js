@@ -4,7 +4,7 @@ import { Form, Field } from 'react-final-form';
 import { TextField, NumberTextField } from 'react-final-form-antd';
 import { Input, Switch } from 'antd';
 import CustomField from './CustomField';
-import { updatePreferences } from "../actions/signUpActions/updateActions"
+import { updatePreferences } from "../actions/signUpActions/updateActions/updatePreferences"
 
 class RegisterPreferencesComponent extends Component {
 
