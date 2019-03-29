@@ -7,7 +7,7 @@ import { Input, Switch } from 'antd';
 
 import CustomField from './CustomField';
 
-class RegisterPreferencesComponent extends Component {
+class RegisterUserComponent extends Component {
 
     submitForm() {
         console.log("CCA");
@@ -32,6 +32,7 @@ class RegisterPreferencesComponent extends Component {
                             name={"Nazwa użytkownika"}
                             component={TextField}
                             onChange={this.handleChange}
+
                         />
 
                         <CustomField
@@ -87,4 +88,4 @@ class RegisterPreferencesComponent extends Component {
 
 }
 
-export default RegisterPreferencesComponent;
+export default RegisterUserComponent;
