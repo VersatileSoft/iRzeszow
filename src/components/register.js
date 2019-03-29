@@ -1,6 +1,6 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
-import '../styles/signBaseComponent.scss';
+import '../styles/register.scss';
 
 class SignBaseComponent extends Component {
 
