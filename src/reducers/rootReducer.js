@@ -1,6 +1,12 @@
 import { combineReducers } from 'redux';
-import signUpReducer from './signUpReducers/signUpReducer';
+import dataReducer from './signUpReducers/dataReducer';
+import signInReducer from './signInReducers/signInReducer';
+import updatePreferences from './signUpReducers/preferencesReducer';
 
-const rootReducer = combineReducers({ signUp: signUpReducer})
+const rootReducer = combineReducers({ 
+    data: dataReducer,
+    signIn: signInReducer,
+    preferences: updatePreferences
+})
 
 export default rootReducer;
