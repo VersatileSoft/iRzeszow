@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import '../styles/MainComponent.scss';
+<<<<<<< HEAD
 import { withRouter } from 'react-router'
+=======
+import Logo from '../images/logo_transparent.png';
+>>>>>>> 15e8f52539182a6160c879a6dad06a6a32dd640e
 
 class Main extends Component {
 
@@ -17,12 +21,12 @@ class Main extends Component {
             <div>
                 <header>
                     <div className="logo">
-                        iRzeszow
+                        <img src={Logo} />
                     </div>
                     <div className="list">
-                        <div>1</div>
-                        <div>2</div>
-                        <div>3</div>
+                        <div>Start</div>
+                        <div>Ustawienia</div>
+                        <div>Wyloguj</div>
                     </div>
                 </header>
                 <section className="main-square">
