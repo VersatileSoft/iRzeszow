@@ -1,6 +1,5 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
-import '../styles/signBaseComponent.scss';
 
 class RegisterMainComponent extends Component {
 
@@ -13,4 +12,4 @@ class RegisterMainComponent extends Component {
 
 }
 
-export default SignBaseComponent;
+export default RegisterMainComponent;
