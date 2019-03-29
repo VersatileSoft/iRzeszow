@@ -6,13 +6,110 @@ html,body {
     -moz-osx-font-smoothing: grayscale;
     width: 100%;
     height: 100%;
-
+    background-color: #17f9f2;
+    background-image: linear-gradient(315deg, #17f9f2 0%, #b0f9a9 74%);
     #root{
         width: 100%;
         height: 100%;
     }
-    
-}
+    .all{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .form-box{
+        width: 30%;
+        height: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: #FFFFFF;
+        padding-bottom: 2vw;
+        border-radius: 14px 14px 14px 14px;
+        -moz-border-radius: 14px 14px 14px 14px;
+        -webkit-border-radius: 14px 14px 14px 14px;
+        border: 0px solid #000000;
+        color: #004a55;
+        img{
+            width: 12vw;
+            height: 12vw;
+        }
+        p{
+            font-size: 2.3vw;
+        }
+    }
+        .form{
+            width: 100%;
+            height: 70%;
+            display: flex;
+            justify-content: space-around;
+            align-items: left;
+            flex-direction: column;
+            input{
+                width: 70%;
+            }
+            .input-wrapper {
+                position: relative;
+                line-height: 14px;
+                margin: 0 10px;
+                display: inline-block;
+                label {
+                    color: #bbb;
+                    font-size: 11px;
+                    text-transform: uppercase;
+                    position: absolute;
+                    z-index: 2;
+                    left: 20px;
+                    top: 14px;
+                    padding: 0 2px;
+                    pointer-events: none;
+                    background: #fff;
+                    -webkit-transition: -webkit-transform 100ms ease;
+                    -moz-transition: -moz-transform 100ms ease;
+                    -o-transition: -o-transform 100ms ease;
+                    -ms-transition: -ms-transform 100ms ease;
+                    transition: transform 100ms ease;
+                    -webkit-transform: translateY(-20px);
+                    -moz-transform: translateY(-20px);
+                    -o-transform: translateY(-20px);
+                    -ms-transform: translateY(-20px);
+                    transform: translateY(-20px);
+                  }
+                  input {
+                    font-size: 13px;
+                    color: #555;
+                    outline: none;
+                    border: 1px solid #bbb;
+                    padding: 10px 20px 20px;
+                    border-radius: 20px;
+                    position: relative;
+                  }
+                  input:invalid + label {
+                    -webkit-transform: translateY(0);
+                    -moz-transform: translateY(0);
+                    -o-transform: translateY(0);
+                    -ms-transform: translateY(0);
+                    transform: translateY(0);
+                  }
+                  input:focus {
+                    border-color: #2b96f1;
+                  }
+                  input:focus + label {
+                    color: #2b96f1;
+                    -webkit-transform: translateY(-20px);
+                    -moz-transform: translateY(-20px);
+                    -o-transform: translateY(-20px);
+                    -ms-transform: translateY(-20px);
+                    transform: translateY(-20px);
+                  }
+                  
+              }
+
+        }
+    }
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;

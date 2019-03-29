@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import { updatePreferences } from "../actions/signUpActions/updateActions/updatePreferences";
 import { updateRegisterState } from '../actions/signUpActions/updateActions/updateRegisterState';
+import '../styles/UniversalForm.scss';
+import Logo from '../images/logo_transparent.png';
 
 class RegisterPreferencesComponent extends Component {
 
@@ -21,63 +23,72 @@ class RegisterPreferencesComponent extends Component {
     render() {
         console.log(this.props.preferencesData.profession)
         return (
-            <div>
-            <Form 
-                onSubmit={this.submitForm}
-                validate={this.validateForm}
-                render={({ handleSubmit, pristine, invalid }) => (
-                    <div>
-                        <Field
-                            placeholder="Podaj nazwę"
-                            component="input"
-                            onChange={ e => {this.handleChange('name', e.target.value)}}
-                        />
+            <div className="all">
+            <div className="form-box">
+             <img src={Logo} alt="logo" />
+                    <p>Zarejestruj</p>
+                    <p>się</p>
+                <Form 
+                    onSubmit={this.submitForm}
+                    validate={this.validateForm}
+                    render={({ handleSubmit, pristine, invalid }) => (
+                        <div className="form">
+                            <div class="input-wrapper">
+                                <Field
+                                        placeholder="Podaj nazwę"
+                                        onChange={ e => {this.handleChange('name', e.target.value)}}
+                                        render={({meta }) => (
+                                            <input type="text" id="user" required/>
+                                        )}
+                                    />
+                                <label for="user">user name</label>
+                            </div>
+                            <Field
+                                placeholder="Imię"
+                                component="input"
+                                onChange={this.handleChange}
+                            />
 
-                        <Field
-                            placeholder="Imię"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
+                            <Field
+                                placeholder="Nazwisko"
+                                component="input"
+                                onChange={this.handleChange}
+                            />
 
-                        <Field
-                            placeholder="Nazwisko"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
+                            <Field
+                                placeholder="Nazwisko"
+                                component="input"
+                                onChange={this.handleChange}
+                            />
 
-                        <Field
-                            placeholder="Nazwisko"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
+                            <Field
+                                name="Hasło"
+                                component="input"
+                                onChange={this.handleChange}
+                            />
 
-                        <Field
-                            name="Hasło"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
-
-                        <Field
-                            name="Powtórz hasło"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
+                            <Field
+                                name="Powtórz hasło"
+                                component="input"
+                                onChange={this.handleChange}
+                            />
 
 
-                        <Field
-                            name="Email"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
+                            <Field
+                                name="Email"
+                                component="input"
+                                onChange={this.handleChange}
+                            />
 
-                        <Field
-                            name="Powtórz hasło"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                )}
-            />
+                            <Field
+                                name="Powtórz hasło"
+                                component="input"
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                    )}
+                />
+            </div>
             </div>
         );
     }

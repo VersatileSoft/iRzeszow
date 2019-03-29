@@ -20,7 +20,9 @@ class RegisterMainComponent extends Component {
                 component = <RegisterUserComponent/>; break;
         }
         return (
-            component
+            <div>
+                {component}
+            </div>
         )
     }
 
