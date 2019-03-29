@@ -15,8 +15,11 @@ const signInReducer = (state = initState, action) =>{
                 [action.name]: action.value
             }
         }
+
+        default:
+            return state
     }
-    return state
+   
 }
 
 export default signInReducer;

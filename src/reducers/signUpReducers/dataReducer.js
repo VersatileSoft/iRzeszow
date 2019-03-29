@@ -35,8 +35,11 @@ const dataReducer = (state = initState, action) =>{
                     [action.name]: action.value
                 }
             }
+
+            default:
+                return state
     }
-    return state
+    
 }
 
 export default dataReducer;
