@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-
 import '../styles/MainComponent.scss';
+import { withRouter } from 'react-router'
 
 class Main extends Component {
+
+    componentDidMount(){
+        console.log(this.props)
+    }
+
+    handleClick = () =>{
+        this.props.history.push('/rezerwacja')
+    }
 
     render() {
         return (
@@ -42,6 +50,7 @@ class Main extends Component {
                 </section>
                 <footer>
                     content
+                    <button onClick={this.handleClick}>Kliknij mnie!</button>
                 </footer>
             </div>
         )
@@ -49,4 +58,4 @@ class Main extends Component {
 
 }
 
-export default Main;
+export default withRouter(Main);
