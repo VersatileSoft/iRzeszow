@@ -28,9 +28,10 @@ class RegisterPreferencesComponent extends Component {
                 render={({ handleSubmit, pristine, invalid }) => (
                     <div>
                         <Field
+                            name="name"
                             placeholder="Podaj nazwę"
                             component="input"
-                            onChange={ e => {this.handleChange('name', e.target.value)}}
+                            onChange={ e => {this.handleChange('profession', e.target.value)}}
                         />
 
                         <Field

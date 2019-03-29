@@ -15,7 +15,6 @@ class App extends Component {
       <Switch>
         <Route exact path="/" render={() => <Main />}></Route>
         <Route  path="/register" render={() => <RegisterMainComponent />}></Route>
-        <Route  path="/rezerwacja" render={() => <RegisterPreferencesComponent />}></Route>
       </Switch>
     );
   }
