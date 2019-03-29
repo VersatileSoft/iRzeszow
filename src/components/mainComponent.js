@@ -6,7 +6,7 @@ import Logo from '../images/logo_transparent.png';
 class Main extends Component {
 
     handleClick = () =>{
-        this.props.history.push('/rezerwacja')
+        this.props.history.push('/register')
     }
 
     render() {
@@ -14,7 +14,7 @@ class Main extends Component {
             <div>
                 <header>
                     <div className="logo">
-                        <img src={Logo} alt="logo" />
+                        <img src={Logo} alt="logo"/>
                     </div>
                     <div className="list">
                         <div>Start</div>

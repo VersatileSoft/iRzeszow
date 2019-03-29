@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 import { Form, Field } from 'react-final-form';
 import { TextField, NumberTextField } from 'react-final-form-antd';
+
 import { Input, Switch } from 'antd';
+
 import CustomField from './CustomField';
-import { updatePreferences } from "../actions/signUpActions/updateActions"
 
-class RegisterPreferencesComponent extends Component {
+class RegisterUserComponent extends Component {
 
-    submitForm = () => {
+    submitForm() {
         console.log("CCA");
     }
 
-    handleChange = () => {
-        
+    handleChange() {
+        console.log("AA");
     }
 
-    validateForm = () => {
+    validateForm() {
         console.log("BB");
     }
 
@@ -28,9 +29,10 @@ class RegisterPreferencesComponent extends Component {
                 render={({ handleSubmit, pristine, invalid }) => (
                     <div>
                         <CustomField
-                            name={"Podaj nazwę"}
+                            name={"Nazwa użytkownika"}
                             component={TextField}
-                            onChange={ e => {this.handleChange('name', e.target.value)}}
+                            onChange={this.handleChange}
+
                         />
 
                         <CustomField
@@ -86,16 +88,4 @@ class RegisterPreferencesComponent extends Component {
 
 }
 
-const mapStateToProps = (state) =>{
-    return{
-        preferencesData: state.preferences.preferencesData
-    }
-}
-
-const mapDispatchToProps = (dispatch) =>{
-    return {
-       updatePreferences: (name,value) => {dispatch(updatePreferences(name, value))}
-    }
-  }
-
-export default connect(mapStateToProps, mapDispatchToProps )(RegisterPreferencesComponent);
+export default RegisterUserComponent;
