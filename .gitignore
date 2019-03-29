@@ -116,5 +116,4 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
-WebApi/.vs/IRzeszow/v16/Server/sqlite3/storage.ide-shm
-WebApi/.vs/IRzeszow/v16/Server/sqlite3/storage.ide-wal
+WebApi/.vs/
