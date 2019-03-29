@@ -6,7 +6,7 @@ import updatePreferences from './signUpReducers/preferencesReducer';
 const rootReducer = combineReducers({ 
     data: dataReducer,
     signIn: signInReducer,
-    preferences: updatePreferences
+    preferences: updatePreferences,
 })
 
 export default rootReducer;
