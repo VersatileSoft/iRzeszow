@@ -5,7 +5,7 @@ import { withCookies } from 'react-cookie';
 import Main from './components/mainComponent';
 import RegisterCompanyComponent from './components/registerCompanyComponent';
 import RegisterUserComponent from './components/registerUserComponent';
-import RegisterMainComponent from './components/registerUserComponent';
+import RegisterMainComponent from './components/registerMainComponent';
 
 class App extends Component {
 

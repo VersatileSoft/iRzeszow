@@ -10,7 +10,7 @@ class Main extends Component {
     }
 
     handleClick = () =>{
-        this.props.history.push('/rezerwacja')
+        this.props.history.push('/register')
     }
 
     render() {

@@ -1,7 +1,8 @@
-import { Component } from 'react';
-import '../styles/signBaseComponent.scss';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router'
 import RegisterCompanyComponent from './registerCompanyComponent';
 import RegisterPreferencesComponent from './registerPreferencesComponent';
+import RegisterUserComponent from './registerUserComponent';
 
 class RegisterMainComponent extends Component {
 
