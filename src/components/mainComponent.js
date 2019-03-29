@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/MainComponent.scss';
-<<<<<<< HEAD
 import { withRouter } from 'react-router'
-=======
 import Logo from '../images/logo_transparent.png';
->>>>>>> 15e8f52539182a6160c879a6dad06a6a32dd640e
 
 class Main extends Component {
 
