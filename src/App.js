@@ -4,14 +4,16 @@ import { Switch, Route } from 'react-router';
 import { withCookies } from 'react-cookie';
 import Main from './components/mainComponent';
 import RegisterCompanyComponent from './components/registerCompanyComponent';
-import RegisterMainComponent from './components/registerMainComponent';
+import RegisterUserComponent from './components/registerUserComponent';
+import RegisterMainComponent from './components/registerUserComponent';
 
 class App extends Component {
 
   render() {
     return (
       <Switch>
-        <Route path="/" render={()=><Main />}></Route>
+        <Route path="/" render={() => <Main />}></Route>
+        <Route exact path="/register" render={() => <RegisterMainComponent />}></Route>
       </Switch>
     );
   }
