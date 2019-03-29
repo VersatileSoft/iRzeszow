@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { Form } from 'final-form';
 
-import '../styles/signBaseComponent.scss';
 import { Form, Field } from 'react-final-form';
 import { TextField } from 'react-final-form-antd';
 
