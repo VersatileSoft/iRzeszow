@@ -7,6 +7,7 @@ import RegisterCompanyComponent from './components/registerCompanyComponent';
 import RegisterUserComponent from './components/registerUserComponent';
 import RegisterMainComponent from './components/registerMainComponent';
 import RegisterPreferencesComponent from './components/registerPreferencesComponent';
+import SignIn from './components/signInComponent';
 
 class App extends Component {
 
@@ -15,6 +16,8 @@ class App extends Component {
       <Switch>
         <Route exact path="/" render={() => <Main />}></Route>
         <Route  path="/register" render={() => <RegisterMainComponent />}></Route>
+        <Route  path="/signIn" render={() => <SignIn />}></Route>
+        <Route  path="/zarezerwuj" render={() => <RegisterUserComponent />}></Route>
       </Switch>
     );
   }

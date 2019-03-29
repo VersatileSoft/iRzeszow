@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Field } from 'react-final-form';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { updateRegisterState } from '../actions/signUpActions/updateActions/updateRegisterState';
 import { updateUser } from '../actions/signUpActions/updateActions/updateUser';
@@ -10,9 +11,14 @@ class RegisterUserComponent extends Component {
         r_pass: ''
     }
 
-    submitForm() {
-        console.log('casdsadsa')
-        this.props.updateRegisterState(3)
+    submitForm = () => {
+        axios.post(this.props.ip + '/Account/user', this.props.userData )
+        .then(res =>{
+            this.props.updateRegisterState(3)
+        })
+        .catch(err =>{
+            
+        })
     }
 
     handleChange(name, value) {
@@ -36,62 +42,69 @@ class RegisterUserComponent extends Component {
                 onSubmit={this.submitForm}
                 validate={this.validateForm}
                 render={({ handleSubmit, pristine, invalid }) => (
-                    <div>
+                    <form onSubmit={handleSubmit}>
                         <Field
                             name="name"
                             placeholder="Podaj imię"
                             component="input"
-                            onChange={ e => {this.handleChange('name', e.target.value)}}
+                            onInput={ e => {this.handleChange('name', e.target.value)}}
                         />
 
                         <Field
                             name="lastName"
                             placeholder="Nazwisko"
                             component="input"
-                            onChange={ e => {this.handleChange('lastName', e.target.value)}}
+                            onInput={ e => {this.handleChange('lastName', e.target.value)}}
                         />
 
                         <Field
                             name="password"
                             placeholder="Hasło"
                             component="input"
-                            onChange={ e => {this.handleChange('password', e.target.value)}}
+                            onInput={ e => {this.handleChange('password', e.target.value)}}
                         />
 
                         <Field
                             name="r_pass"
                             placeholder="Powtórz hasło"
                             component="input"
-                            onChange={ e => {this.handleRChange('r_pass', e.target.value)}}
+                            onInput={ e => {this.handleRChange('r_pass', e.target.value)}}
                         />
 
                         <Field
                             name="email"
                             component="input"
                             placeholder="Email"
-                            onChange={ e => {this.handleChange('email', e.target.value)}}
+                            onInput={ e => {this.handleChange('email', e.target.value)}}
                         />
 
                         <Field
                             name="gender"
                             component="input"
                             placeholder="Płeć"
-                            onChange={ e => {this.handleChange('gender', e.target.value)}}
+                            onInput={ e => {this.handleChange('gender', e.target.value)}}
                         />
 
                         <Field
                             name="phone"
                             component="input"
                             placeholder="Numer telefonu"
-                            onChange={ e => {this.handleChange('phone', e.target.value)}}
+                            onInput={ e => {this.handleChange('phone', e.target.value)}}
                         />
 
                         <input type="submit" value="Wyślij mnie"></input>
 
-                    </div>
+                    </form>
                 )}
             />
         );
+    }
+}
+
+const mapStateToProps = (state) =>{
+    return{
+        ip: state.global.ip,
+        userData: state.data.userData
     }
 }
 
@@ -102,4 +115,4 @@ const mapDispatchToProps = (dispatch) =>{
     }
   }
 
-export default connect(null, mapDispatchToProps)(RegisterUserComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterUserComponent);

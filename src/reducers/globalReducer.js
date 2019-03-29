@@ -4,7 +4,7 @@ const initState = {
                         //2 - company info
                         //3 - preferences
 
-    ip: "https://irzeszowwebapi.azurewebsites.net/api/"
+    ip: "https://irzeszowwebapi.azurewebsites.net/api"
  }
  
  const globalReducer = (state = initState, action) =>{

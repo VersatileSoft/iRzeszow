@@ -7,7 +7,7 @@ import { updateRegisterState } from '../actions/signUpActions/updateActions/upda
 class RegisterPreferencesComponent extends Component {
 
     submitForm = () => {
-        console.log("CCA");
+        this.props.updateRegisterState(0);
     }
 
     handleChange = (name, value) => {
@@ -19,64 +19,28 @@ class RegisterPreferencesComponent extends Component {
     }
 
     render() {
-        console.log(this.props.preferencesData.profession)
         return (
             <div>
             <Form 
                 onSubmit={this.submitForm}
                 validate={this.validateForm}
                 render={({ handleSubmit, pristine, invalid }) => (
-                    <div>
+                    <form onSubmit={handleSubmit}>
                         <Field
                             name="name"
                             placeholder="Podaj nazwę"
                             component="input"
-                            onChange={ e => {this.handleChange('profession', e.target.value)}}
+                            onInput={ e => {this.handleChange('profession', e.target.value)}}
                         />
 
                         <Field
                             placeholder="Imię"
                             component="input"
-                            onChange={this.handleChange}
+                            onInput={ e => {this.handleChange('tagId', e.target.value)}}
                         />
 
-                        <Field
-                            placeholder="Nazwisko"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
-
-                        <Field
-                            placeholder="Nazwisko"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
-
-                        <Field
-                            name="Hasło"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
-
-                        <Field
-                            name="Powtórz hasło"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
-
-
-                        <Field
-                            name="Email"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
-
-                        <Field
-                            name="Powtórz hasło"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
-                    </div>
+                        <input type="submit" value="Wyślij mnie!"></input>
+                    </form>
                 )}
             />
             </div>
@@ -87,9 +51,10 @@ class RegisterPreferencesComponent extends Component {
 
 const mapStateToProps = (state) =>{
     return{
-        preferencesData: state.preferences.preferencesData
+        ip: state.global.ip
     }
 }
+
 
 const mapDispatchToProps = (dispatch) =>{
     return {
