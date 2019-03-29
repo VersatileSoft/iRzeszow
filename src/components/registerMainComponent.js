@@ -11,20 +11,18 @@ class RegisterMainComponent extends Component {
 
         //Get from redux main state
 
+        let component = null;
         switch (this.props.registerState) {
             case 2: 
-                return (
-                    <RegisterCompanyComponent/>
-                );
+                component = <RegisterCompanyComponent/>
             case 3: 
-                return (
-                    <RegisterPreferencesComponent/>
-                );
+                component = <RegisterPreferencesComponent/>
             default:
-                return (
-                    <RegisterUserComponent/>
-                );
+                component = <RegisterUserComponent/>
         }
+        return (
+            component
+        )
     }
 
 }

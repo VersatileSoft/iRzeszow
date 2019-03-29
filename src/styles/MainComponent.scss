@@ -96,7 +96,7 @@ html,body {
       display: flex;
       height: 30vh;
       flex-wrap: wrap;
-
+      justify-content: center;
       .middle-square{
         justify-content: center;
         align-items: center;
@@ -107,27 +107,26 @@ html,body {
       .rest{
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
+        align-items: stretch;
         justify-content: center;
         min-width: 50%;
           .adv{
             background-color: #d6c512;
-            height: 100%;
             min-width: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
           }
           .smallest-squares{
-            height: 100%;
+            flex-wrap: wrap;
             min-width: 50%;
             display: flex;
             flex-direction: column;
               div{
-                height: 50%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                min-height: 50%;
               }
           }
       }
@@ -139,6 +138,26 @@ html,body {
       height: 10vh;
       background-color: #17f9f2;
       background-image: linear-gradient(315deg, #17f9f2 0%, #b0f9a9 74%);
+    }
+    @media only screen and (max-width: 460px){
+      .lower-squares{
+        height: 100vh;
+      }
+      .middle-square{
+        width: 100%;
+      }
+      .rest{
+        width: 100%;
+      }
+      .adv{
+        width: 100%;
+      }
+      .smallest-squares{
+        div{
+          width: 100%;
+          height: 20vh;
+        }
+      }
     }
   }
   

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
-import { TextField, NumberTextField } from 'react-final-form-antd';
-import { Input, Switch } from 'antd';
-import CustomField from './CustomField';
 import { updatePreferences } from "../actions/signUpActions/updateActions/updatePreferences";
 import { updateRegisterState } from '../actions/signUpActions/updateActions/updateRegisterState';
 
@@ -24,65 +21,64 @@ class RegisterPreferencesComponent extends Component {
     render() {
         console.log(this.props.preferencesData.profession)
         return (
+            <div>
             <Form 
                 onSubmit={this.submitForm}
                 validate={this.validateForm}
                 render={({ handleSubmit, pristine, invalid }) => (
                     <div>
-                        <CustomField
-                            name={"Podaj nazwę"}
-                            component={TextField}
-                            onChange={ e => {this.handleChange('profession', e.target.value)}}
+                        <Field
+                            placeholder="Podaj nazwę"
+                            component="input"
+                            onChange={ e => {this.handleChange('name', e.target.value)}}
                         />
 
-                        <CustomField
-                            name={"Imię"}
-                            component={TextField}
+                        <Field
+                            placeholder="Imię"
+                            component="input"
                             onChange={this.handleChange}
                         />
 
-                        <CustomField
-                            name={"Nazwisko"}
-                            component={TextField}
+                        <Field
+                            placeholder="Nazwisko"
+                            component="input"
                             onChange={this.handleChange}
                         />
 
-                        <CustomField
-                            name={"Nazwisko"}
-                            component={TextField}
+                        <Field
+                            placeholder="Nazwisko"
+                            component="input"
                             onChange={this.handleChange}
                         />
 
-                        <CustomField
-                            name={"Hasło"}
-                            component={TextField}
+                        <Field
+                            name="Hasło"
+                            component="input"
                             onChange={this.handleChange}
                         />
 
-                        <CustomField
-                            name={"Powtórz hasło"}
-                            component={TextField}
+                        <Field
+                            name="Powtórz hasło"
+                            component="input"
                             onChange={this.handleChange}
                         />
 
-                        <Switch
 
-                        />
-
-                        <CustomField
-                            name={"Email"}
-                            component={TextField}
+                        <Field
+                            name="Email"
+                            component="input"
                             onChange={this.handleChange}
                         />
 
-                        <CustomField
-                            name={"Powtórz hasło"}
-                            component={NumberTextField}
+                        <Field
+                            name="Powtórz hasło"
+                            component="input"
                             onChange={this.handleChange}
                         />
                     </div>
                 )}
             />
+            </div>
         );
     }
 
