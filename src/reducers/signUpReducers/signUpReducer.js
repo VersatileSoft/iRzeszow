@@ -1,9 +1,18 @@
 const initState = {
-    name: '',
-    lastName: '',
-    gender: '',
-    email: '',
-    phone: ''
+    userData: {
+        name: '',
+        lastName: '',
+        gender: '',
+        email: '',
+        phone: ''
+    },
+    
+    companyData: {
+        companyName: '',
+        address: '',
+        phone: '',
+        website: ''
+    }
 }
 
 const signUpReducer = (state = initState, action) =>{
