@@ -162,29 +162,17 @@ class CreatePostComponent extends Component {
                                     <label htmlFor="description">Opis</label>
                                 </div>
                                 <div className="input-wrapper">
-                                    <p>Od</p>
+                                    <p class="label">Od</p>
                                     <DatePicker
                                         selected={this.props.pendingPost.dateFrom}
                                         onChange={this.handleFromChange}
                                     />
                                 </div>
                                 <div className="input-wrapper">
-                                    <p>Do</p>
+                                    <p class="label">Do</p>
                                     <DatePicker
                                         selected={this.props.pendingPost.dateTo}
                                         onChange={this.handleToChange}
-                                    />
-                                </div>
-                                <div className="input-wrapper">
-                                    <ImageUploader
-                                        withIcon={false}
-                                        accept='accept=image/png'
-                                        label="Pliki .png do 5 MB"
-                                        singleImage="true"
-                                        buttonText='Wybierz zdjęcie'
-                                        onChange={this.onDrop}
-                                        imgExtension={['.png']}
-                                        maxFileSize={5242880}
                                     />
                                 </div>
                                 <div className="input-wrapper">
@@ -199,6 +187,18 @@ class CreatePostComponent extends Component {
                                     <label htmlFor="postType">Kategoria</label>
                                 </div>
                                 <div className="input-wrapper">
+                                    <ImageUploader
+                                        withIcon={false}
+                                        accept='accept=image/png'
+                                        label="Pliki .png do 5 MB"
+                                        singleImage="true"
+                                        buttonText='Wybierz zdjęcie'
+                                        onChange={this.onDrop}
+                                        imgExtension={['.png']}
+                                        maxFileSize={5242880}
+                                    />
+                                </div>
+                                <div className="input-wrapper">
                                     <p>Podaj swoje zainteresowania</p>
                                     <Select
                                         formatGroupLabel={formatGroupLabel}
@@ -207,21 +207,9 @@ class CreatePostComponent extends Component {
                                         options={this.state.mappedTags}
                                         onChange={this.handleTagChange} />
                                 </div>
-                                <div className="input-wrapper">
-                                    <p>Podaj swój staż</p>
-                                    <Select
-                                        formatGroupLabel={formatGroupLabel}
-                                        name="profession"
-                                        options={[
-                                            { value: 1, label: "Junior" },
-                                            { value: 2, label: "Mid-level" },
-                                            { value: 3, label: "Senior" },
-
-                                        ]}
-
-                                        onChange={this.handleProfessionChange} />
+                                <div class="submits">
+                                    <button type="submit">Zatwierdź</button>
                                 </div>
-                                <button type="submit">Zatwierdź</button>
                             </form>
                         )}
                     />

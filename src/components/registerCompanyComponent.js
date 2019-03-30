@@ -97,8 +97,9 @@ class RegisterCompanyComponent extends Component {
                                     />
                                     <label htmlFor="website">Strona internetowa</label>
                                 </div>
-                                <button type="submit">Zatwierdź</button>
-
+                                <div className="submits">
+                                 <button type="submit">Zatwierdź</button>
+                                </div>          
                             </form>
                         )}
                     />

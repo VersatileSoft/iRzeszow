@@ -6,6 +6,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { savePosts } from '../actions/postsActions/savePosts';
 import { withCookies } from 'react-cookie';
+import SinglePost from './singlePost';
 
 class Main extends Component {
 
@@ -26,9 +27,11 @@ class Main extends Component {
         axios.get(this.props.ip + '/Post')
             .then(res => {
                 this.props.savePosts(res.data)
-            })
-            .catch(err => {
-
+            }).then(() => {
+                console.log("aa")
+                for (let i = 0; i < 5; i++) {
+                    this.refs[i].innerHTML = <SinglePost data={this.props.posts[i]}/>;
+                }
             })
     }
 
@@ -40,9 +43,7 @@ class Main extends Component {
         }
     }
 
-
     render() {
-
 
         let mappedPosts = this.props.posts.map(post => {
             return (
@@ -57,7 +58,7 @@ class Main extends Component {
             <div>
                 <header>
                     <div className="logo">
-                        <a href="/"><img src={Logo} alt="logo" /></a>
+                        <a href="/home"><img src={Logo} alt="logo" /></a>
                     </div>
                     <div className="list">
                         <div>Start</div>
@@ -65,31 +66,23 @@ class Main extends Component {
                         <div onClick={this.logOut}>Wyloguj</div>
                     </div>
                 </header>
-                <section className="main-square">
+                <section className="main-square" id="0">
                     <div>
                         {mappedPosts}
                     </div>
                 </section>
-                <section className="lower-squares">
-                    <div className="middle-square">
-                        content
-                    </div>
+                <section className="lower-squares" >
+                    <div className="middle-square" id="1"/>
                     <div className="rest">
-                        <div className="adv">
-                            adv
-                        </div>
+                        <div className="adv" id="2"/>
                         <div className="smallest-squares">
-                            <div className="smallest-square-1">
-                                content
-                            </div>
-                            <div className="smallest-square-2">
-                                content
-                            </div>
+                            <div className="smallest-square-1" id="3"/>
+                            <div className="smallest-square-2" id="4"/>
                         </div>
                     </div>
                 </section>
                 <footer>
-                    content
+                    Hackerz 2k19
                 </footer>
             </div>
         )
