@@ -7,12 +7,11 @@ import ImageUploader from 'react-images-upload';
 import DatePicker from "react-datepicker";
 import Select from 'react-select';
 import axios from 'axios';
-
 import Logo from '../images/logo_transparent.png';
 import '../styles/UniversalForm.scss';
 import "react-datepicker/dist/react-datepicker.css";
 import { Cookies } from 'react-cookie';
-import { array, arrayOf } from 'C:/Users/wiedz/AppData/Local/Microsoft/TypeScript/3.3/node_modules/@types/prop-types';
+
 
 class CreatePostComponent extends Component {
 
