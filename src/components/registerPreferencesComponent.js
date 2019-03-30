@@ -17,7 +17,6 @@ class RegisterPreferencesComponent extends Component {
     }
 
     validateForm = () => {
-        console.log("BB");
     }
 
     render() {

@@ -1,13 +1,13 @@
 const initState = {
     userData: {
         name: '',
-        lastName: '',
+        surname: '',
         password: '',
-        gender: '',
+        gender: 0,
         email: '',
         phone: '',
-        profession: 'back-end',
-        tagId: [1]
+        professionId: 1,
+        tagIds: [1]
     },
 
     companyData: {
