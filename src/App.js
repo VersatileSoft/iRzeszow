@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <Switch>
         <Route exact path="/" render={() => <SignInComponent cookies={this.props.cookies} />}></Route>
-        <Route path="/register" render={() => <RegisterMainComponent />}></Route>
+        <Route path="/register" render={() => <RegisterMainComponent cookies={this.props.cookies} />}></Route>
         <Route path="/home" render={() => <Main />}></Route>
         <Route path="/post" render={() => <CreatePostComponent cookies={this.props.cookies} />}></Route>
         <Route path="/singlePost" render={() => <SinglePost />}></Route>

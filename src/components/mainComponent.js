@@ -10,28 +10,25 @@ import SinglePost from './singlePost';
 
 class Main extends Component {
 
-    componentDidMount() {
-        const { cookies } = this.props
-        if(cookies.get('token') !== undefined){
-            axios.interceptors.request.use(function(config) {
-            const token = cookies.get('token');
-            if( token != null ){
-                config.headers.Authorization = `Bearer ${token}`;
-            }
-            return config;
-            },function(err){
-                return Promise.reject(err);
-            });
-        }
+    state = {
+        data:null
+    }
 
-        axios.get(this.props.ip + '/Post')
+    handleClick = () => {
+        this.props.history.push('/register')
+    }
+
+    componentDidMount() {
+        const { cookies } = this.props;
+        const config = {
+            headers: {
+                'Authorization': 'bearer ' + cookies.get('token')
+            }
+        };
+        axios.get(this.props.ip + '/Post', config)
             .then(res => {
                 this.props.savePosts(res.data)
-            }).then(() => {
-                console.log("aa")
-                for (let i = 0; i < 5; i++) {
-                    this.refs[i].innerHTML = <SinglePost data={this.props.posts[i]}/>;
-                }
+                this.setState({data: res.data})
             })
     }
 
@@ -41,6 +38,11 @@ class Main extends Component {
         if(cookies.get('token') === undefined){
             this.props.history.push('/')
         }
+    }
+
+    hasPosts() {
+        console.log(this.state)
+        return this.state.data != null;
     }
 
     render() {
@@ -53,12 +55,13 @@ class Main extends Component {
                 </div>
             )
         })
-
+        console.log("aa")
+        console.log(this.props)
         return (
             <div>
                 <header>
                     <div className="logo">
-                        <a href="/home"><img src={Logo} alt="logo" /></a>
+                        <a href="/"><img src={Logo} alt="logo" /></a>
                     </div>
                     <div className="list">
                         <div>Start</div>
@@ -67,22 +70,28 @@ class Main extends Component {
                     </div>
                 </header>
                 <section className="main-square" id="0">
-                    <div>
-                        {mappedPosts}
-                    </div>
+                    { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][0]}/> : <div/>}
                 </section>
                 <section className="lower-squares" >
-                    <div className="middle-square" id="1"/>
+                    <div className="middle-square" id="1">
+                        { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][1]}/> : <div/>}
+                    </div>
                     <div className="rest">
-                        <div className="adv" id="2"/>
+                        <div className="adv" id="2">
+                            { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][2]}/> : <div/>}
+                        </div>
                         <div className="smallest-squares">
-                            <div className="smallest-square-1" id="3"/>
-                            <div className="smallest-square-2" id="4"/>
+                            <div className="smallest-square-1" id="3">
+                                { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][3]}/> : <div/>}
+                            </div>
+                            <div className="smallest-square-2" id="4">
+                                { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][4]}/> : <div/>}
+                            </div>
                         </div>
                     </div>
                 </section>
                 <footer>
-                    Hackerz 2k19
+                    content
                 </footer>
             </div>
         )
