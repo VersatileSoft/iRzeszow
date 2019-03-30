@@ -11,6 +11,8 @@ import axios from 'axios';
 import Logo from '../images/logo_transparent.png';
 import '../styles/UniversalForm.scss';
 import "react-datepicker/dist/react-datepicker.css";
+import { Cookies } from 'react-cookie';
+import image2base64 from 'image-to-base64';
 
 class CreatePostComponent extends Component {
 
@@ -44,7 +46,19 @@ class CreatePostComponent extends Component {
     }
 
     onDrop = (picture) => {
-        this.props.pendingPost.image = picture
+        console.log(picture);
+        image2base64(picture[0].name)
+        .then(
+            (response) => {
+                console.log(response)
+                this.props.pendingPost.image = response
+            }
+        )
+    }
+    
+    handleTagChange = (e) => {
+        console.log(e)
+        this.props.pendingPost.tagIds = e.map((item) => item.value);
     }
 
     handleFromChange = (e) => {
@@ -67,9 +81,23 @@ class CreatePostComponent extends Component {
         this.props.pendingPost.postType = e;
     }
 
+    handleProfessionChange = (e) => {
+        console.log(e)
+        this.props.pendingPost.profession = e.value;
+    }
+
     submitForm = () => {
         console.log(this.props);
-        axios.post(this.props.ip + '/Post', this.props.pendingPost)
+
+        const { cookies } = this.props;
+
+        const config = {
+            headers: {
+                'Authorization': 'bearer ' + cookies.get('token')
+            }
+        };
+
+        axios.post(this.props.ip + '/Post', this.props.pendingPost, config)
             .then(res => {
                 this.props.sendPost(this.props.pendingPost);
             })
@@ -108,7 +136,8 @@ class CreatePostComponent extends Component {
             <div className="all">
                 <div className="form-box">
                     <img src={Logo} alt="logo" />
-                    <p>Utwórz wydarzenie</p>
+                    <p>Utwórz</p>
+                    <p>wydarzenie</p>
                     <Form
                         onSubmit={this.submitForm}
                         render={({ handleSubmit, pristine, invalid }) => (
@@ -135,18 +164,30 @@ class CreatePostComponent extends Component {
                                     />
                                     <label htmlFor="description">Opis</label>
                                 </div>
-                                <div className="input-wrapper data-picker">
+                                <div className="input-wrapper">
                                     <p>Od</p>
                                     <DatePicker
                                         selected={this.props.pendingPost.dateFrom}
                                         onChange={this.handleFromChange}
                                     />
                                 </div>
-                                <div className="input-wrapper data-picker">
+                                <div className="input-wrapper">
                                     <p>Do</p>
                                     <DatePicker
                                         selected={this.props.pendingPost.dateTo}
                                         onChange={this.handleToChange}
+                                    />
+                                </div>
+                                <div className="input-wrapper">
+                                    <ImageUploader
+                                        withIcon={false}
+                                        accept='accept=image/png'
+                                        label="Pliki .png do 5 MB"
+                                        singleImage="true"
+                                        buttonText='Wybierz zdjęcie'
+                                        onChange={this.onDrop}
+                                        imgExtension={['.png']}
+                                        maxFileSize={5242880}
                                     />
                                 </div>
                                 <div className="input-wrapper">
@@ -161,20 +202,7 @@ class CreatePostComponent extends Component {
                                     <label htmlFor="postType">Kategoria</label>
                                 </div>
                                 <div className="input-wrapper">
-                                    <ImageUploader
-                                        withIcon={false}
-                                        accept='accept=image/png'
-                                        label="Pliki .png do 5 MB"
-                                        singleImage="true"
-                                        buttonText='Wybierz zdjęcie'
-                                        onChange={this.onDrop}
-                                        imgExtension={['.png']}
-                                        maxFileSize={5242880}
-                                    />
-                                </div>
-                                <div class="select">
-                                <div className="input-wrapper">
-                                    <div>Podaj tematykę</div>
+                                    <p>Podaj swoje zainteresowania</p>
                                     <Select
                                         formatGroupLabel={formatGroupLabel}
                                         name="profession"
@@ -183,10 +211,21 @@ class CreatePostComponent extends Component {
                                         options={this.state.mappedTags}
                                         onChange={this.handleTagChange} />
                                 </div>
+                                <div className="input-wrapper">
+                                    <p>Podaj swój staż</p>
+                                    <Select
+                                        formatGroupLabel={formatGroupLabel}
+                                        name="profession"
+                                        options={[
+                                            { value: 1, label: "Junior" },
+                                            { value: 2, label: "Mid-level" },
+                                            { value: 3, label: "Senior" },
+
+                                        ]}
+
+                                        onChange={this.handleProfessionChange} />
                                 </div>
-                                <div class="submits">
-                                 <button type="submit">Zatwierdź</button>
-                                </div>
+                                <button type="submit">Zatwierdź</button>
                             </form>
                         )}
                     />
