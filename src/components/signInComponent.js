@@ -7,6 +7,7 @@ import { withRouter } from 'react-router';
 import '../styles/UniversalForm.scss';
 import Logo from '../images/logo_transparent.png';
 
+
 class SignInComponent extends Component {
 
     handleChange = (name, value) =>{
@@ -16,6 +17,8 @@ class SignInComponent extends Component {
     submitForm = () =>{
         axios.post( this.props.ip + '/Auth',  this.props.signIn)
         .then(res =>{
+            const { cookies } = this.props
+            cookies.set('token', res.data.token, {path: '/'} )
             this.props.history.push('/')
         })
         .catch(err =>{
@@ -23,8 +26,11 @@ class SignInComponent extends Component {
         })
     }
 
+    handleClick = () =>{
+        this.props.history.push('/register')
+    }
+
     render(){
-        console.log(this.props.signIn)
         return(
             <div className="all">
                 <div className="form-box">
@@ -55,7 +61,7 @@ class SignInComponent extends Component {
                                     </div>
                                     <p>Zapomniałeś hasła?</p>
                                     <div class="submits">
-                                        <button type="submit" class="registration-button">Rejestracja</button>
+                                        <button type="submit" class="registration-button" onClick={this.handleClick}>Rejestracja</button>
                                         <button type="submit" >Zatwierdź</button>
                                     </div>
                                 </form>

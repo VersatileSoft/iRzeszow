@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import '../styles/MainComponent.scss';
 import { withRouter } from 'react-router'
 import Logo from '../images/logo_transparent.png';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { savePosts } from '../actions/postsActions/savePosts';
 
 class Main extends Component {
 
@@ -9,7 +12,29 @@ class Main extends Component {
         this.props.history.push('/register')
     }
 
+    componentDidMount(){
+        axios.get( this.props.ip + '/Post')
+        .then(res =>{
+            this.props.savePosts(res.data)
+        })
+        .catch(err =>{
+
+        })
+    }
+
+  
     render() {
+
+       
+           let mappedPosts = this.props.posts.map(post =>{
+                return(
+                    <div key={post.image}>
+                        <h2>{post.title}</h2>
+                        <p>{post.type}</p>
+                    </div>
+                )
+            })
+    
         return (
             <div>
                 <header>
@@ -24,7 +49,7 @@ class Main extends Component {
                 </header>
                 <section className="main-square">
                     <div>
-                        content
+                        {mappedPosts}
                     </div>
                 </section>
                 <section className="lower-squares">
@@ -51,7 +76,19 @@ class Main extends Component {
             </div>
         )
     }
-
 }
 
-export default withRouter(Main);
+const mapStateToProps = (state) =>{
+    return{
+        ip: state.global.ip,
+        posts: state.holdPosts.posts
+    }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        savePosts: (postsArray) => {dispatch(savePosts(postsArray))}
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Main));
