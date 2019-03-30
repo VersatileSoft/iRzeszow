@@ -5,22 +5,43 @@ import { connect } from 'react-redux';
 import '../styles/UniversalForm.scss';
 import { updateRegisterState } from '../actions/signUpActions/updateActions/updateRegisterState';
 import { updateUser } from '../actions/signUpActions/updateActions/updateUser';
+import Switch from 'react-switch';
 import Logo from '../images/logo_transparent.png';
 
 class RegisterUserComponent extends Component {
 
     state = {
-        r_pass: ''
+        r_pass: '',
+        isMale: false,
+        isCompany: false
     }
 
     submitForm = () => {
-        this.props.updateRegisterState(3)
+        if (this.state.isCompany) {
+            this.props.updateRegisterState(2)
+        } else {
+            this.props.updateRegisterState(3)
+        }
+        
         // axios.post(this.props.ip + '/Account/user', this.props.userData )
         // .then(res =>{
         // })
         // .catch(err =>{
         //     console.log(err)
         // })
+    }
+
+    handleGenderChange = () => {
+        this.handleChange("gender", (!this.state.isMale) ? 1 : 0);
+        this.setState({
+            isMale: !this.state.isMale
+        });
+    }
+
+    handleCompanyChange = () => {
+        this.setState({
+            isCompany: !this.state.isCompany
+        });
     }
 
     handleChange(name, value) {
@@ -32,7 +53,6 @@ class RegisterUserComponent extends Component {
             [name]: value
         })
      }
-    
 
     validateForm() {
         console.log("BB");
@@ -94,6 +114,14 @@ class RegisterUserComponent extends Component {
                                 )}
                             />
                         <label htmlFor="r_pass">Powtórz hasło</label>
+                    </div>
+
+                    <div className="input-wrapper">
+                        <Switch onChange={this.handleGenderChange} checked={this.state.isMale}/>
+                    </div>
+
+                    <div className="input-wrapper">
+                        <Switch onChange={this.handleCompanyChange} checked={this.state.isCompany}/>
                     </div>
 
                     <div className="input-wrapper">
