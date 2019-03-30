@@ -12,13 +12,13 @@ class RegisterUserComponent extends Component {
     }
 
     submitForm = () => {
-        axios.post(this.props.ip + '/Account/user', this.props.userData )
-        .then(res =>{
-            this.props.updateRegisterState(3)
-        })
-        .catch(err =>{
-            
-        })
+        this.props.updateRegisterState(3)
+        // axios.post(this.props.ip + '/Account/user', this.props.userData )
+        // .then(res =>{
+        // })
+        // .catch(err =>{
+        //     console.log(err)
+        // })
     }
 
     handleChange(name, value) {
@@ -54,7 +54,7 @@ class RegisterUserComponent extends Component {
                             name="lastName"
                             placeholder="Nazwisko"
                             component="input"
-                            onInput={ e => {this.handleChange('lastName', e.target.value)}}
+                            onInput={ e => {this.handleChange('surname', e.target.value)}}
                         />
 
                         <Field
@@ -78,12 +78,12 @@ class RegisterUserComponent extends Component {
                             onInput={ e => {this.handleChange('email', e.target.value)}}
                         />
 
-                        <Field
+                        {/* <Field
                             name="gender"
                             component="input"
                             placeholder="Płeć"
                             onInput={ e => {this.handleChange('gender', e.target.value)}}
-                        />
+                        /> */}
 
                         <Field
                             name="phone"

@@ -1,5 +1,5 @@
 const initState = {
-    registerState: 0,   //0 - none
+    registerState: 1,   //0 - none
                         //1 - username and password
                         //2 - company info
                         //3 - preferences

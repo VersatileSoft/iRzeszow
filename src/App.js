@@ -18,6 +18,7 @@ class App extends Component {
         <Route  path="/register" render={() => <RegisterMainComponent />}></Route>
         <Route  path="/signIn" render={() => <SignIn />}></Route>
         <Route  path="/zarezerwuj" render={() => <RegisterUserComponent />}></Route>
+        <Route  path="/company" render={() => <RegisterCompanyComponent />}></Route>
       </Switch>
     );
   }

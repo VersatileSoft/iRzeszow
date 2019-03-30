@@ -15,7 +15,6 @@ class RegisterPreferencesComponent extends Component {
     }
 
     validateForm = () => {
-        console.log("BB");
     }
 
     render() {
@@ -27,16 +26,17 @@ class RegisterPreferencesComponent extends Component {
                 render={({ handleSubmit, pristine, invalid }) => (
                     <form onSubmit={handleSubmit}>
                         <Field
-                            name="name"
-                            placeholder="Podaj nazwę"
+                            name="profesja"
+                            placeholder="Wybierz profesję"
                             component="input"
-                            onInput={ e => {this.handleChange('profession', e.target.value)}}
+                            onInput={ e => {this.handleChange('professionId', e.target.value)}}
                         />
 
                         <Field
-                            placeholder="Imię"
+                            name="Tagi"
+                            placeholder="Tagi"
                             component="input"
-                            onInput={ e => {this.handleChange('tagId', e.target.value)}}
+                            onInput={ e => {this.handleChange('tagIds', e.target.value)}}
                         />
 
                         <input type="submit" value="Wyślij mnie!"></input>
