@@ -49,7 +49,7 @@ class Main extends Component {
             <div>
                 <header>
                     <div className="logo">
-                        <a href="/"><img src={Logo} alt="logo" /></a>
+                        <a href="/home"><img src={Logo} alt="logo" /></a>
                     </div>
                     <div className="list">
                         <div>Start</div>
