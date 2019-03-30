@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Form, Field } from 'react-final-form';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import '../styles/UniversalForm.scss';
 import { updateRegisterState } from '../actions/signUpActions/updateActions/updateRegisterState';
