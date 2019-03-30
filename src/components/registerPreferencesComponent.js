@@ -12,16 +12,18 @@ class RegisterPreferencesComponent extends Component {
 
     state = {
         tags: [],
-        mappedTags: null
+        mappedTags: []
     }
 
     componentDidMount(){
+        console.log("aba");
         axios.get( this.props.ip + '/Tag')
         .then(res =>{
             console.log(res.data);
             this.setState({
                 tags: res.data
             })
+            this.mapTags();
         })
         .catch(err =>{
 
@@ -29,13 +31,14 @@ class RegisterPreferencesComponent extends Component {
     }
 
     mapTags = () =>{
-        const mappedTags = this.state.tags.map(tag =>
+        let mappedTag = this.state.tags.map(tag =>
         ({
                 value: tag.id, 
                 label: tag.name
         }));
+        console.log(mappedTag);
         this.setState({
-            mappedTags
+            mappedTags: mappedTag
         })
     }
 
@@ -63,10 +66,10 @@ class RegisterPreferencesComponent extends Component {
                     render={({ handleSubmit, pristine, invalid }) => (
                         <form className="form" onSubmit={handleSubmit}>
                             <div className="input-wrapper">
-                            <Select
-                                isMulti
-                                name="colors"
-                                options={this.state.mappedTags}/>
+                                <Select
+                                    isMulti
+                                    name="colors"
+                                    options={this.state.mappedTags}/>
                              </div>
                         </form>
                     )}
