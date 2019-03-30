@@ -19,9 +19,8 @@ export default class SinglePost extends Component {
       return (<div></div>)
     };
     return (
-      <div className="SinglePost" style={{backgroundImage: 'url("' + this.state.data.image + '") '}}>
+      <div className="SinglePost" style={{backgroundImage: 'url("' + this.state.data.image + '") ', backgroundSize: "cover",backgroundRepeat: "no-repeat",backgroundPosition: "center"  }}>
 
-        <div className="title">{this.state.data.title}</div>
         <div className="continue">
           <button>Czytaj dalej</button>
         </div>
