@@ -8,38 +8,38 @@ import { savePosts } from '../actions/postsActions/savePosts';
 
 class Main extends Component {
 
-    handleClick = () =>{
+    handleClick = () => {
         this.props.history.push('/register')
     }
 
-    componentDidMount(){
-        axios.get( this.props.ip + '/Post')
-        .then(res =>{
-            this.props.savePosts(res.data)
-        })
-        .catch(err =>{
+    componentDidMount() {
+        axios.get(this.props.ip + '/Post')
+            .then(res => {
+                this.props.savePosts(res.data)
+            })
+            .catch(err => {
 
-        })
+            })
     }
 
-  
+
     render() {
 
-       
-           let mappedPosts = this.props.posts.map(post =>{
-                return(
-                    <div key={post.image}>
-                        <h2>{post.title}</h2>
-                        <p>{post.type}</p>
-                    </div>
-                )
-            })
-    
+
+        let mappedPosts = this.props.posts.map(post => {
+            return (
+                <div key={post.image}>
+                    <h2>{post.title}</h2>
+                    <p>{post.type}</p>
+                </div>
+            )
+        })
+
         return (
             <div>
                 <header>
                     <div className="logo">
-                        <a href="/"><img src={Logo} alt="logo"/></a>
+                        <a href="/"><img src={Logo} alt="logo" /></a>
                     </div>
                     <div className="list">
                         <div>Start</div>
@@ -78,17 +78,17 @@ class Main extends Component {
     }
 }
 
-const mapStateToProps = (state) =>{
-    return{
+const mapStateToProps = (state) => {
+    return {
         ip: state.global.ip,
         posts: state.holdPosts.posts
     }
 }
 
-const mapDispatchToProps = (dispatch) =>{
-    return{
-        savePosts: (postsArray) => {dispatch(savePosts(postsArray))}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        savePosts: (postsArray) => { dispatch(savePosts(postsArray)) }
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Main));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Main));
