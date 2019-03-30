@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using IRzeszow.Model.Tag.Request;
+using IRzeszow.Model.Tag.Response;
 using IRzeszow.Service.Interfaces;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IRzeszow.WebApi.Controllers
@@ -19,32 +19,28 @@ namespace IRzeszow.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<string>>> Get()
+        public async Task<ActionResult<IEnumerable<TagModel>>> Get()
         {
-            return Ok(await _tagService.GetAll());
+            return Ok(await _tagService.GetAllAsync());
         }
 
-        [HttpGet("{id}", Name = "Get")]
-        public async Task<ActionResult<string>> Get(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TagModel>> Get(int id)
         {
-            return Ok(await _tagService.Get(id));
+            return Ok(await _tagService.GetAsync(id));
+        }
+
+        [HttpGet("by_name/{name}")]
+        public async Task<ActionResult<IEnumerable<TagModel>>> GetByName(string name)
+        {
+            return Ok(await _tagService.GetAsync(name));
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] string value)
+        [AllowAnonymous]
+        public async Task<ActionResult> Post([FromBody] CreateTagDto value)
         {
-            return Ok();
-        }
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] string value)
-        {
-            return Ok();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
-        {
+            await _tagService.CreateAsync(value);
             return Ok();
         }
     }

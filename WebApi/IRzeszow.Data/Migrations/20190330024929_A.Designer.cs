@@ -4,14 +4,16 @@ using IRzeszow.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IRzeszow.Data.Migrations
 {
     [DbContext(typeof(IRzeszowDbContext))]
-    partial class IRzeszowDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190330024929_A")]
+    partial class A
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

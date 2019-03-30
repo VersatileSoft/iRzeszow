@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using IRzeszow.Data.Model;
 using IRzeszow.Component;
 using System.Threading.Tasks;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace IRzeszow.Repository.Repositories
 {
@@ -17,37 +19,72 @@ namespace IRzeszow.Repository.Repositories
             DbContext = dbContext;
         }
 
-        public async Task CreateCompanyAccount(CreateCompanyAccountDto createCompanyAccountDto)
+        public async Task CreateCompanyAccountAsync(CreateCompanyAccountDto createCompanyAccountDto)
         {
+
+            byte[] salt = Helpers.GenerateSalt();
             await DbContext.Accounts.AddAsync(
                 new Account
                 {
                     Email = createCompanyAccountDto.Email,
-                    HashedPassword = Helpers.HashPassword(createCompanyAccountDto.Password, Helpers.GenerateSalt()),
+                    HashedPassword = Helpers.HashPassword(createCompanyAccountDto.Password, salt),
+                    Salt = salt,
+                    Phone = createCompanyAccountDto.Phone,     
+                    Profession = createCompanyAccountDto.Profession,
                     CompanyData = new CompanyData
                     {
-                        CompanyName = createCompanyAccountDto.CompanyName
+                        CompanyName = createCompanyAccountDto.CompanyName,
+                        Address = createCompanyAccountDto.Address,
+                        Website = createCompanyAccountDto.Website
                     },
-                    UserData = null                   
+                    UserData = null
                 });
             await DbContext.SaveChangesAsync();
         }
 
-        public async Task CreateUserAccount(CreateUserAccountDto createUserAccountDto)
+        public async Task CreateUserAccountAsync(CreateUserAccountDto createUserAccountDto, IEnumerable<Tag> Tags)
         {
+            UserData userData = new UserData
+            {
+                Name = createUserAccountDto.Name,
+                Surename = createUserAccountDto.Surename,
+                Gender = createUserAccountDto.Gender             
+            };
+
+            byte[] salt = Helpers.GenerateSalt();
+
             await DbContext.Accounts.AddAsync(
                 new Account
                 {
                     Email = createUserAccountDto.Email,
-                    HashedPassword = Helpers.HashPassword(createUserAccountDto.Password, Helpers.GenerateSalt()),
-                    UserData = new UserData
-                    {
-                        Name = createUserAccountDto.Name,
-                        Surename = createUserAccountDto.Surename
-                    },
+                    HashedPassword = Helpers.HashPassword(createUserAccountDto.Password, salt),
+                    Salt = salt,
+                    Phone = createUserAccountDto.Phone,
+                    UserData = userData,
+                    Profession = createUserAccountDto.Profession,
                     CompanyData = null
                 });
+
+            Tags.ToList().ForEach(async tag =>
+            {
+                await DbContext.TagToUserDatas.AddAsync(new TagToUserData
+                {
+                    Tag = tag,
+                    UserData = userData
+                });            
+            });
+
             await DbContext.SaveChangesAsync();
+        }
+
+        public async Task<Account> FindByEmailAsync(string email)
+        {
+            return await DbContext.Accounts.Where(a => a.Email == email).FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> CheckIfAccountExistAsync(string email)
+        {
+            return await DbContext.Accounts.Where(a => a.Email == email).AnyAsync();
         }
     }
 }

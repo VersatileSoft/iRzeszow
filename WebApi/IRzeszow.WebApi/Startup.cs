@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using IRzeszow.Data;
 using IRzeszow.Repository;
 using IRzeszow.Service;
+using IRzeszow.WebApi.Service.Exception;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -70,7 +71,7 @@ namespace IRzeszowApi
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
-
+            app.UseMiddleware<CustomExceptionMiddleware>();
             app.UseAuthentication();
 
             if (env.IsDevelopment())
