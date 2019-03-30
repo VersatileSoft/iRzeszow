@@ -75,7 +75,7 @@ class RegisterUserComponent extends Component {
                                     <input type="text" {...input} id="user" required/>
                                 )}
                             />
-                        <label htmlFor="name">Imię</label>
+                        <label htmlFor="user">Imię</label>
                     </div>
                     <div className="input-wrapper">
                         <Field
@@ -103,7 +103,6 @@ class RegisterUserComponent extends Component {
                     <div className="input-wrapper">
                         <Field
                                 name="r_pass"
-                                placeholder="Podaj nazwę"
                                 component="input"
                                 onInput={ e => {this.handleRChange('r_pass', e.target.value)}}
                                 render={({input, meta}) => (
@@ -117,7 +116,6 @@ class RegisterUserComponent extends Component {
                     <div className="input-wrapper">
                         <Field
                                 name="email"
-                                placeholder="Podaj nazwę"
                                 component="input"
                                 onInput={ e => {this.handleChange('email', e.target.value)}}
                                 render={({input, meta}) => (
