@@ -40,10 +40,9 @@ class RegisterPreferencesComponent extends Component {
     }
 
     submitForm = () => {
-        console.log('dupa')
+        console.log(this.props.userData)
         axios.post(this.props.ip + '/Account/user', this.props.userData)
         .then(res =>{
-            console.log(res)
             this.props.updateRegisterState(0);
         })
         .catch(err =>{
