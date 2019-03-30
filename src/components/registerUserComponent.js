@@ -126,13 +126,13 @@ class RegisterUserComponent extends Component {
                     </div>
                     <div className="switches">
                         <div className="input-wrapper">
-                            <a className="m">Mężczyzna</a>
+                            <p className="m">Mężczyzna</p>
                             <Switch onChange={this.handleGenderChange} checked={this.state.isMale}/>
-                            <a className="k">Kobieta</a>
+                            <p className="k">Kobieta</p>
                         </div>
 
                         <div className="input-wrapper">
-                            <a className="company_question">Czy chcesz założyć konto firmowe</a>
+                            <p className="company_question">Czy chcesz założyć konto firmowe</p>
                             <Switch onChange={this.handleCompanyChange} checked={this.state.isCompany}/>
                         </div>
                     </div>

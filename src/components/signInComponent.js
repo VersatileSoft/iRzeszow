@@ -24,6 +24,7 @@ class SignIn extends Component {
     }
 
     render(){
+        console.log(this.props.signIn)
         return(
             <div className="all">
                 <div className="form-box">
@@ -36,7 +37,7 @@ class SignIn extends Component {
                         render={({ handleSubmit, pristine, invalid }) => (
                             <div className="form">
                                 <form onSubmit={handleSubmit}>
-                                <div class="input-wrapper">
+                                <div className="input-wrapper">
                                         <Field
                                             name="email"
                                             placeholder="Email"
@@ -44,7 +45,7 @@ class SignIn extends Component {
                                             onInput={ e => {this.handleChange('email', e.target.value)}}
                                         />
                                     </div>
-                                    <div class="input-wrapper">
+                                    <div className="input-wrapper">
                                         <Field
                                             name="password"
                                             placeholder="Hasło"
