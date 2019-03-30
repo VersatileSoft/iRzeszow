@@ -61,9 +61,12 @@ html,body {
             }
             .switches{
                 display: flex;
-                justify-content: right;
                 flex-direction: column;
-                align-items: right;
+                width: 80%;
+                .input-wrapper{
+                    align-items: stretch;
+                    justify-content: flex-end;
+                }
             }
             .input-wrapper {
                 position: relative;
