@@ -11,7 +11,7 @@ import Logo from '../images/logo_transparent.png';
 import '../styles/UniversalForm.scss';
 import "react-datepicker/dist/react-datepicker.css";
 import { Cookies } from 'react-cookie';
-
+import image2base64 from 'image-to-base64';
 
 class CreatePostComponent extends Component {
 
@@ -45,7 +45,18 @@ class CreatePostComponent extends Component {
 
     onDrop = (picture) => {
         console.log(picture);
-        this.props.pendingPost.image = picture[0]
+        image2base64(picture[0].name)
+        .then(
+            (response) => {
+                console.log(response)
+                this.props.pendingPost.image = response
+            }
+        )
+    }
+    
+    handleTagChange = (e) => {
+        console.log(e)
+        this.props.pendingPost.tagIds = e.map((item) => item.value);
     }
 
     handleFromChange = (e) => {
@@ -68,33 +79,23 @@ class CreatePostComponent extends Component {
         this.props.pendingPost.postType = e;
     }
 
+    handleProfessionChange = (e) => {
+        console.log(e)
+        this.props.pendingPost.profession = e.value;
+    }
+
     submitForm = () => {
         console.log(this.props);
 
         const { cookies } = this.props;
-        let data = new FormData();
-        
-        data.append('title', this.props.pendingPost.title);
-        data.append('description', this.props.pendingPost.description);
-        data.append('dateFrom', this.props.pendingPost.dateFrom.toISOString());
-        data.append('dateTo', this.props.pendingPost.dateTo.toISOString());
-        data.append('postType', this.props.pendingPost.postType);
-        data.append('profession', this.props.pendingPost.profession);
-        data.append("tagIds", JSON.stringify(this.props.pendingPost.tagIds));
-
-        data.append('image', this.props.pendingPost.image);
 
         const config = {
             headers: {
-                'Content-Type': 'multipart/form-data',
                 'Authorization': 'bearer ' + cookies.get('token')
             }
         };
 
-        console.log(data);
-        console.log(config);
-
-        axios.post(this.props.ip + '/Post', data, config)
+        axios.post(this.props.ip + '/Post', this.props.pendingPost, config)
             .then(res => {
                 this.props.sendPost(this.props.pendingPost);
             })
