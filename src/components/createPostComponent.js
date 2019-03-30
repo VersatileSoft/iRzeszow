@@ -207,20 +207,6 @@ class CreatePostComponent extends Component {
                                         options={this.state.mappedTags}
                                         onChange={this.handleTagChange} />
                                 </div>
-                                <div className="input-wrapper">
-                                    <p>Podaj swój staż</p>
-                                    <Select
-                                        formatGroupLabel={formatGroupLabel}
-                                        name="profession"
-                                        options={[
-                                            { value: 1, label: "Junior" },
-                                            { value: 2, label: "Mid-level" },
-                                            { value: 3, label: "Senior" },
-
-                                        ]}
-
-                                        onChange={this.handleProfessionChange} />
-                                </div>
                                 <div class="submits">
                                     <button type="submit">Zatwierdź</button>
                                 </div>
