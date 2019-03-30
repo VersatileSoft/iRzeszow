@@ -78,9 +78,9 @@ class SignInComponent extends Component {
                                         />
                                     </div>
                                     <div className="forgot">
-                                        <p>
+                                        <div>
                                          Zapomniałeś hasła?
-                                        </p>
+                                        </div>
                                     </div>
                                     <div className="submits">
                                         <button type="submit" className="registration-button" onClick={this.handleClick}>Rejestracja</button>
