@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import RegisterCompanyComponent from './registerCompanyComponent';
 import RegisterPreferencesComponent from './registerPreferencesComponent';
 import RegisterUserComponent from './registerUserComponent';
+import MainComponent from './mainComponent';
 
 class RegisterMainComponent extends Component {
 
@@ -12,6 +13,8 @@ class RegisterMainComponent extends Component {
 
         let component = null;
         switch (this.props.registerState) {
+            case 0: 
+            component = <MainComponent/>; break;
             case 2: 
                 component = <RegisterCompanyComponent/>; break;
             case 3: 

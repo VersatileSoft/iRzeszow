@@ -5,7 +5,9 @@ const initState = {
         password: '',
         gender: '',
         email: '',
-        phone: ''
+        phone: '',
+        profession: 'back-end',
+        tagId: [1]
     },
 
     companyData: {
@@ -32,6 +34,15 @@ const dataReducer = (state = initState, action) =>{
                 ...state,
                 companyData:{
                     ...state.companyData,
+                    [action.name]: action.value
+                }
+            }
+
+            case 'UPDATE_PREFERENCES':
+            return{
+                ...state,
+                userData:{
+                    ...state.userData,
                     [action.name]: action.value
                 }
             }

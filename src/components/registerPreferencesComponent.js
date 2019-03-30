@@ -9,7 +9,7 @@ import Logo from '../images/logo_transparent.png';
 class RegisterPreferencesComponent extends Component {
 
     submitForm = () => {
-        console.log("CCA");
+        this.props.updateRegisterState(0);
     }
 
     handleChange = (name, value) => {
@@ -21,7 +21,6 @@ class RegisterPreferencesComponent extends Component {
     }
 
     render() {
-        console.log(this.props.preferencesData.profession)
         return (
             <div className="all">
             <div className="form-box">
@@ -81,22 +80,11 @@ class RegisterPreferencesComponent extends Component {
                             </div>
 
                             <Field
-                                name="Powtórz hasło"
-                                component="input"
+                                name="submit"
                                 onChange={this.handleChange}
-                            />
-
-
-                            <Field
-                                name="Email"
-                                component="input"
-                                onChange={this.handleChange}
-                            />
-
-                            <Field
-                                name="Powtórz hasło"
-                                component="input"
-                                onChange={this.handleChange}
+                                render={({meta }) => (
+                                    <button type="submit">Zatwierdź</button>
+                                )}
                             />
                         </div>
                     )}
@@ -110,9 +98,10 @@ class RegisterPreferencesComponent extends Component {
 
 const mapStateToProps = (state) =>{
     return{
-        preferencesData: state.preferences.preferencesData
+        ip: state.global.ip
     }
 }
+
 
 const mapDispatchToProps = (dispatch) =>{
     return {
