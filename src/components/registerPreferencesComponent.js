@@ -40,8 +40,18 @@ class RegisterPreferencesComponent extends Component {
     }
 
     submitForm = () => {
-        console.log('dupa')
-        axios.post(this.props.ip + '/Account/user', this.props.userData)
+        console.log(this.props.userData.tagIds.map((item) => ({Id: item.value})));
+        let data = {
+            name: this.props.userData.name,
+            surname: this.props.userData.surname,
+            password: this.props.userData.password,
+            gender: this.props.userData.gender,
+            email: this.props.userData.email,
+            professionId: this.props.userData.professionId.value,
+            tagIds: this.props.userData.tagIds.map((item) => item.value)
+        };
+    
+        axios.post(this.props.ip + '/Account/user', data)
         .then(res =>{
             console.log(res)
             this.props.updateRegisterState(0);
