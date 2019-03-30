@@ -47,7 +47,6 @@ class Main extends Component {
                 </section>
                 <footer>
                     content
-                    <button onClick={this.handleClick}>Kliknij mnie!</button>
                 </footer>
             </div>
         )
