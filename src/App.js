@@ -10,6 +10,7 @@ import RegisterMainComponent from './components/registerMainComponent';
 import RegisterPreferencesComponent from './components/registerPreferencesComponent';
 import SignInComponent from './components/signInComponent';
 import CreatePostComponent from './components/createPostComponent';
+import SinglePost from './components/singlePost';
 
 class App extends Component {
 
@@ -35,6 +36,7 @@ class App extends Component {
         <Route path="/register" render={() => <RegisterMainComponent />}></Route>
         <Route path="/sign" render={() => <SignInComponent cookies={this.props.cookies} />}></Route>
         <Route path="/post" render={() => <CreatePostComponent cookies={this.props.cookies} />}></Route>
+        <Route path="/singlePost" render={() => <SinglePost />}></Route>
       </Switch>
     );
   }
