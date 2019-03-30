@@ -91,7 +91,7 @@ class Main extends Component {
                     </div>
                 </section>
                 <footer>
-                    content
+                    Created and Designeed by First Order Team #Hackathon2019
                 </footer>
             </div>
         )
