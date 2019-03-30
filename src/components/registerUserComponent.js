@@ -2,16 +2,29 @@ import React, { Component } from 'react';
 import { Form, Field } from 'react-final-form';
 import { connect } from 'react-redux';
 import { updateRegisterState } from '../actions/signUpActions/updateActions/updateRegisterState';
+import { updateUser } from '../actions/signUpActions/updateActions/updateUser';
 
 class RegisterUserComponent extends Component {
 
-    submitForm() {
-        console.log("CCA");
+    state = {
+        r_pass: ''
     }
 
-    handleChange() {
-        console.log("AA");
+    submitForm() {
+        console.log('casdsadsa')
+        this.props.updateRegisterState(3)
     }
+
+    handleChange(name, value) {
+       this.props.updateUser(name,value)
+    }
+
+    handleRChange(name, value) {
+        this.setState({
+            [name]: value
+        })
+     }
+    
 
     validateForm() {
         console.log("BB");
@@ -26,53 +39,55 @@ class RegisterUserComponent extends Component {
                     <div>
                         <Field
                             name="name"
-                            placeholder="Podaj nazwę"
+                            placeholder="Podaj imię"
                             component="input"
                             onChange={ e => {this.handleChange('name', e.target.value)}}
                         />
 
                         <Field
-                            placeholder="Imię"
-                            component="input"
-                            onChange={this.handleChange}
-                        />
-
-                        <Field
+                            name="lastName"
                             placeholder="Nazwisko"
                             component="input"
-                            onChange={this.handleChange}
+                            onChange={ e => {this.handleChange('lastName', e.target.value)}}
                         />
 
                         <Field
-                            placeholder="Nazwisko"
+                            name="password"
+                            placeholder="Hasło"
                             component="input"
-                            onChange={this.handleChange}
+                            onChange={ e => {this.handleChange('password', e.target.value)}}
                         />
 
                         <Field
-                            name="Hasło"
+                            name="r_pass"
+                            placeholder="Powtórz hasło"
                             component="input"
-                            onChange={this.handleChange}
+                            onChange={ e => {this.handleRChange('r_pass', e.target.value)}}
                         />
 
                         <Field
-                            name="Powtórz hasło"
+                            name="email"
                             component="input"
-                            onChange={this.handleChange}
-                        />
-
-
-                        <Field
-                            name="Email"
-                            component="input"
-                            onChange={this.handleChange}
+                            placeholder="Email"
+                            onChange={ e => {this.handleChange('email', e.target.value)}}
                         />
 
                         <Field
-                            name="Powtórz hasło"
+                            name="gender"
                             component="input"
-                            onChange={this.handleChange}
+                            placeholder="Płeć"
+                            onChange={ e => {this.handleChange('gender', e.target.value)}}
                         />
+
+                        <Field
+                            name="phone"
+                            component="input"
+                            placeholder="Numer telefonu"
+                            onChange={ e => {this.handleChange('phone', e.target.value)}}
+                        />
+
+                        <input type="submit" value="Wyślij mnie"></input>
+
                     </div>
                 )}
             />
@@ -82,7 +97,8 @@ class RegisterUserComponent extends Component {
 
 const mapDispatchToProps = (dispatch) =>{
     return {
-       updateRegisterState: (registerState) => {dispatch(updateRegisterState(registerState))}
+       updateRegisterState: (registerState) => {dispatch(updateRegisterState(registerState))},
+       updateUser: (name,value) => {dispatch(updateUser(name,value))}
     }
   }
 
