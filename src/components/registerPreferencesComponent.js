@@ -29,10 +29,11 @@ class RegisterPreferencesComponent extends Component {
     }
 
     mapTags = () =>{
-        const mappedTags  = this.state.tags.map(tag =>{
-                value: tag.id; 
+        const mappedTags = this.state.tags.map(tag =>
+        ({
+                value: tag.id, 
                 label: tag.name
-        })
+        }));
         this.setState({
             mappedTags
         })
