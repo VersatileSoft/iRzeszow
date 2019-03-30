@@ -76,6 +76,29 @@ class RegisterPreferencesComponent extends Component {
     }
 
     render() {
+        const groupStyles = {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          };
+          const groupBadgeStyles = {
+            backgroundColor: '#EBECF0',
+            borderRadius: '2em',
+            color: '#172B4D',
+            display: 'inline-block',
+            fontSize: 12,
+            fontWeight: 'normal',
+            lineHeight: '1',
+            minWidth: 3,
+            padding: '0.16666666666667em 0.5em',
+            textAlign: 'center',
+          };
+          const formatGroupLabel = data => (
+            <div style={groupStyles}>
+              <span>{data.label}</span>
+              <span style={groupBadgeStyles}>{data.options.length}</span>
+            </div>
+          );
         return (
             <div className="all">
             <div className="form-box">
@@ -86,28 +109,33 @@ class RegisterPreferencesComponent extends Component {
                     onSubmit={this.submitForm}
                     validate={this.validateForm}
                     render={({ handleSubmit, pristine, invalid }) => (
-                        <form className="form" onSubmit={handleSubmit}>
+                        <form className="form2" onSubmit={handleSubmit}>
                             <div className="input-wrapper">
-                                <Select
-                                    height="50px"
-                                    width="50px"
-                                    isMulti
-                                    name="tag"
-                                    options={this.state.mappedTags}
-                                    onChange={this.handleTagChange}/>
-                            </div>
-                            <div className="input-wrapper">
-                                <Select
-                                    name="profession"
-                                    options={[
-                                        {value: 1, label: "Junior"},
-                                        {value: 2, label: "Mid-level"},
-                                        {value: 3, label: "Senior"},
-                                    ]}
-                                    
-                                    onChange={this.handleProfessionChange}/>
-                            </div>
-                            <button type="submit">Zatwierdź</button>
+                            <p>Podaj swoje zainteresowania</p>
+                                    <Select
+                                        height="50px"
+                                        width="50px"
+                                        isMulti
+                                        name="tag"
+                                        options={this.state.mappedTags}
+                                        onChange={this.handleTagChange}/>
+                                </div>
+                                <div className="input-wrapper">
+                                <p>Podaj swój staż</p>
+                                    <Select
+                                        formatGroupLabel={formatGroupLabel}
+                                        name="profession"
+                                        options={[
+                                            {value: 1, label: "Junior"},
+                                            {value: 2, label: "Mid-level"},
+                                            {value: 3, label: "Senior"},
+                                            
+                                        ]}
+                                        
+                                        onChange={this.handleProfessionChange}/>
+                                </div>
+                                <button type="submit">Zatwierdź</button>
+
                         </form>
                     )}
                 />

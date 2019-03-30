@@ -4,6 +4,7 @@ import { updateRegisterState } from '../actions/signUpActions/updateActions/upda
 import { Form, Field } from 'react-final-form';
 import { updateCompany } from '../actions/signUpActions/updateActions/updateCompany'
 import Logo from '../images/logo_transparent.png';
+import axios from 'axios'
 import '../styles/UniversalForm.scss';
 
 class RegisterCompanyComponent extends Component {
@@ -13,7 +14,27 @@ class RegisterCompanyComponent extends Component {
     }
 
     submitForm = () =>{
-        this.props.updateRegisterState(3);
+        console.log(this.props)
+        let data = {
+            name: this.props.userData.name,
+            surname: this.props.userData.surname,
+            password: this.props.userData.password,
+            gender: this.props.userData.gender,
+            email: this.props.userData.email,
+            companyName: this.props.companyData.companyName,
+            address: this.props.companyData.address,
+            phone: this.props.companyData.phone,
+            website: this.props.companyData.website
+        };
+    
+        axios.post(this.props.ip + '/Account/user', data)
+        .then(res =>{
+            console.log(res)
+            this.props.updateRegisterState(0);
+        })
+        .catch(err =>{
+            console.log(err)
+        })
     }
 
     render() {
@@ -33,6 +54,7 @@ class RegisterCompanyComponent extends Component {
                                     <Field
                                         name="companyName"
                                         placeholder="Nazwa firmy"
+                                        component="input"
                                         onInput={ e => {this.handleChange('companyName', e.target.value)}}
                                         render={({meta }) => (
                                             <input type="text" id="companyName" name="companyName" required/>
@@ -44,6 +66,7 @@ class RegisterCompanyComponent extends Component {
                                 <Field
                                     name="address"
                                     placeholder="Podaj adres"
+                                    component="input"
                                     onInput={ e => {this.handleChange('address', e.target.value)}}
                                     render={({meta }) => (
                                         <input type="text" id="address" name="address" required/>
@@ -55,6 +78,7 @@ class RegisterCompanyComponent extends Component {
                                 <Field
                                     name="phone"
                                     placeholder="Nr telefonu"
+                                    component="input"
                                     onInput={ e => {this.handleChange('phone', e.target.value)}}
                                     render={({meta }) => (
                                         <input type="text" id="phone" name="phone" required/>
@@ -66,6 +90,7 @@ class RegisterCompanyComponent extends Component {
                                 <Field
                                     name="website"
                                     placeholder="Adres strony"
+                                    component="input"
                                     onInput={ e => {this.handleChange('website', e.target.value)}}
                                     render={({meta }) => (
                                         <input type="text" id="website" name="website" required/>
@@ -86,7 +111,8 @@ class RegisterCompanyComponent extends Component {
 
 const mapStateToProps = (state) =>{
     return{
-        companyData: state.data.companyData
+        companyData: state.data.companyData,
+        userData: state.data.userData
     }
 }
 
