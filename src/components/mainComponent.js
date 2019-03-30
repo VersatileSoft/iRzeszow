@@ -46,9 +46,10 @@ class Main extends Component {
         console.log(this.state)
         return this.state.data != null;
     }
-
+    click = () => {
+        this.props.history.push('/post')
+    }
     render() {
-
         let mappedPosts = this.props.posts.map(post => {
             return (
                 <div key={post.image}>
@@ -67,6 +68,7 @@ class Main extends Component {
                     </div>
                     <div className="list">
                         <div>Start</div>
+                        <div onClick={this.click}>Dodaj post</div>
                         <div>Ustawienia</div>
                         <div onClick={this.logOut}>Wyloguj</div>
                     </div>
