@@ -51,12 +51,13 @@ class RegisterPreferencesComponent extends Component {
     }
 
     handleProfessionChange = (e) => {
-        this.props.updatePreferences("professionId", e.target.value);
+        console.log(e);
+        this.props.updatePreferences("professionId", e);
     }
 
     handleTagChange = (e) => {
-        this.props.updatePreferences("tagIds", e.target.value);
-        console.log(e)
+        console.log(e);
+        this.props.updatePreferences("tagIds", e);
     }
 
     validateForm = () => {

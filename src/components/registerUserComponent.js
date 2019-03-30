@@ -69,21 +69,21 @@ class RegisterUserComponent extends Component {
                     <div className="input-wrapper">
                         <Field
                                 name="name"
-                                placeholder="Podaj nazwę"
-                                onChange={ e => {this.handleChange('name', e.target.value)}}
-                                render={({meta }) => (
-                                    <input type="text" id="user" name="name" required/>
+                                component="input"
+                                onInput={ e => {this.handleChange('name', e.target.value)}}
+                                render={({input, meta}) => (
+                                    <input type="text" {...input} id="user" required/>
                                 )}
                             />
-                        <label htmlFor="user">Imię</label>
+                        <label htmlFor="name">Imię</label>
                     </div>
                     <div className="input-wrapper">
                         <Field
                                 name="surname"
-                                placeholder="Podaj nazwę"
-                                onChange={ e => {this.handleChange('surname', e.target.value)}}
-                                render={({meta }) => (
-                                    <input type="text" id="surname" name="surname" required/>
+                                component="input"
+                                onInput={ e => {this.handleChange('surname', e.target.value)}}
+                                render={({input, meta}) => (
+                                    <input type="text" {...input} id="surname" name="surname" required/>
                                 )}
                             />
                         <label htmlFor="surname">Nazwisko</label>
@@ -91,10 +91,10 @@ class RegisterUserComponent extends Component {
                     <div className="input-wrapper">
                         <Field
                                 name="password"
-                                placeholder="Podaj nazwę"
-                                onChange={ e => {this.handleChange('password', e.target.value)}}
-                                render={({meta }) => (
-                                    <input type="text" id="password" name="password" required/>
+                                component="input"
+                                onInput={ e => {this.handleChange('password', e.target.value)}}
+                                render={({input, meta}) => (
+                                    <input type="text" {...input} id="password" name="password" required/>
                                 )}
                             />
                         <label htmlFor="password">Hasło</label>
@@ -104,9 +104,10 @@ class RegisterUserComponent extends Component {
                         <Field
                                 name="r_pass"
                                 placeholder="Podaj nazwę"
-                                onChange={ e => {this.handleRChange('r_pass', e.target.value)}}
-                                render={({meta }) => (
-                                    <input type="text" id="r_pass" name="r_pass" required/>
+                                component="input"
+                                onInput={ e => {this.handleRChange('r_pass', e.target.value)}}
+                                render={({input, meta}) => (
+                                    <input type="text" {...input} id="r_pass" name="r_pass" required/>
                                 )}
                             />
                         <label htmlFor="r_pass">Powtórz hasło</label>
@@ -117,22 +118,23 @@ class RegisterUserComponent extends Component {
                         <Field
                                 name="email"
                                 placeholder="Podaj nazwę"
-                                onChange={ e => {this.handleChange('email', e.target.value)}}
-                                render={({meta }) => (
-                                    <input type="text" id="email" name="email" required/>
+                                component="input"
+                                onInput={ e => {this.handleChange('email', e.target.value)}}
+                                render={({input, meta}) => (
+                                    <input type="text" {...input} id="email" name="email" required/>
                                 )}
                             />
                         <label htmlFor="email">E-mail</label>
                     </div>
                     <div className="switches">
                         <div className="input-wrapper">
-                            <p className="m">Mężczyzna</p>
+                            <a className="m">Mężczyzna</a>
                             <Switch onChange={this.handleGenderChange} checked={this.state.isMale}/>
-                            <p className="k">Kobieta</p>
+                            <a className="k">Kobieta</a>
                         </div>
 
                         <div className="input-wrapper">
-                            <p className="company_question">Czy chcesz założyć konto firmowe</p>
+                            <a class="company_question">Czy chcesz założyć konto firmowe</a>
                             <Switch onChange={this.handleCompanyChange} checked={this.state.isCompany}/>
                         </div>
                     </div>
