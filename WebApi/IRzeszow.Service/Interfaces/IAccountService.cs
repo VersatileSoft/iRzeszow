@@ -8,7 +8,7 @@ namespace IRzeszow.Service.Interfaces
 {
     public interface IAccountService
     {
-        Task CreateUser(CreateUserAccountDto value);
-        Task CreateCompany(CreateCompanyAccountDto value);
+        Task CreateUserAsync(CreateUserAccountDto value);
+        Task CreateCompanyAsync(CreateCompanyAccountDto value);
     }
 }

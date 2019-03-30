@@ -9,44 +9,44 @@ using IRzeszow.Repository.Interfaces;
 using Microsoft.Extensions.Options;
 using IRzeszow.Model.Account.Request;
 using System.Threading.Tasks;
+using IRzeszow.WebApi.Service.Exception;
+using System.Net;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace IRzeszow.Service.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly AppSettings _appSettings;
         private readonly IAccountRepository _accountRepository;
+        private readonly ITagRepository _tagRepository;
 
-        public AccountService(IOptions<AppSettings> appSettings, IAccountRepository accountRepository)
+        public AccountService(IAccountRepository accountRepository,
+            ITagRepository tagRepository)
         {
-            _appSettings = appSettings.Value;
             _accountRepository = accountRepository;
+            _tagRepository = tagRepository;
         }
 
-        public async Task CreateCompany(CreateCompanyAccountDto value)
+        public async Task CreateCompanyAsync(CreateCompanyAccountDto value)
         {
-            await _accountRepository.CreateCompanyAccount(value);
+            if (await _accountRepository.CheckIfAccountExistAsync(value.Email))
+                throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "User already exsist");
+
+            await _accountRepository.CreateCompanyAccountAsync(value);
         }
 
-        public async Task CreateUser(CreateUserAccountDto value)
+        public async Task CreateUserAsync(CreateUserAccountDto value)
         {
-            await _accountRepository.CreateUserAccount(value);
-        }
+            if (await _accountRepository.CheckIfAccountExistAsync(value.Email))
+                throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "User already exsist");
 
-        private string GenerateToken(Account account)
-        {
-            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
-            byte[] key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[] {
-                    new Claim(ClaimTypes.Name, account.Id.ToString())
-                }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+            IEnumerable<Tag> tags = await _tagRepository.FindRange(value.TagIds);
+
+            if (tags.Count() != value.TagIds.Count())
+                throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "Tag is not exsist");
+
+            await _accountRepository.CreateUserAccountAsync(value, tags);
         }
     }
 }

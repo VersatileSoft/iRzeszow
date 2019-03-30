@@ -9,9 +9,7 @@ namespace IRzeszow.Model.Account.Request
     {
         [Required]
         public string CompanyName { get; set; }
-        [Required]
-        public string Surename { get; set; }
-        [Required]
-        public IEnumerable<int> TagsIds { get; set; }
+        public string Address { get; set; }
+        public string Website { get; set; }
     }
 }

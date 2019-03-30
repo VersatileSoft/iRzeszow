@@ -5,10 +5,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190329175232_A.cs" />
+    <Compile Remove="Migrations\20190329175232_A.Designer.cs" />
+    <Compile Remove="Migrations\20190329184541_A.cs" />
+    <Compile Remove="Migrations\20190329184541_A.Designer.cs" />
+    <Compile Remove="Migrations\20190329194227_A.cs" />
+    <Compile Remove="Migrations\20190329194227_A.Designer.cs" />
+    <Compile Remove="Migrations\20190329225718_A.cs" />
+    <Compile Remove="Migrations\20190329225718_A.Designer.cs" />
+    <Compile Remove="Migrations\20190329233904_A.cs" />
+    <Compile Remove="Migrations\20190329233904_A.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.2.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IRzeszow.Component\IRzeszow.Component.csproj" />
   </ItemGroup>
 
   <ItemGroup>

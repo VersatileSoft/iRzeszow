@@ -21,47 +21,17 @@ namespace IRzeszow.WebApi.Controllers
             _accountService = accountService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<string>>> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        [HttpGet("{id}", Name = "Get")]
-        public async Task<ActionResult<string>> Get(int id)
-        {
-            return "value";
-        }
-
         [HttpPost("company")]
-        public async Task<ActionResult> CreateCompany([FromBody] CreateCompanyAccountDto value)
+        public async Task<ActionResult> CreateCompanyAsync([FromBody] CreateCompanyAccountDto value)
         {
-            await _accountService.CreateCompany(value);
+            await _accountService.CreateCompanyAsync(value);
             return Ok();
         }
 
         [HttpPost("user")]
-        public async Task<ActionResult> CreateUser([FromBody] CreateUserAccountDto value)
+        public async Task<ActionResult> CreateUserAsync([FromBody] CreateUserAccountDto value)
         {
-            await _accountService.CreateUser(value);
-            return Ok();
-        }
-
-        [HttpPut("company/{id}")]
-        public async Task<ActionResult> UpdateCompany(int id, [FromBody] string value)
-        {
-            return Ok();
-        }
-
-        [HttpPut("user/{id}")]
-        public async Task<ActionResult> UpdateUser(int id, [FromBody] string value)
-        {
-            return Ok();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
-        {
+            await _accountService.CreateUserAsync(value);
             return Ok();
         }
     }

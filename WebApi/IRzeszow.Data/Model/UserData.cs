@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IRzeszow.Component.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,5 +10,7 @@ namespace IRzeszow.Data.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surename { get; set; }
+        public Genders Gender { get; set; }
+        public virtual IEnumerable<TagToUserData> Tags { get; set; }
     }
 }
