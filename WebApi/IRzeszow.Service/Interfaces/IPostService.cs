@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IRzeszow.Model.Post.Request;
 using IRzeszow.Model.Post.Response;
+using Microsoft.AspNetCore.Http;
 
 namespace IRzeszow.Service.Interfaces
 {

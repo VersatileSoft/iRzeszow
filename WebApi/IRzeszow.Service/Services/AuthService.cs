@@ -40,7 +40,8 @@ namespace IRzeszow.Service.Services
 
             return new AccountLoginModel
             {
-                Token = GenerateToken(account)
+                Token = GenerateToken(account),
+                IsCompany = account.UserDataId == null
             };
         }
 

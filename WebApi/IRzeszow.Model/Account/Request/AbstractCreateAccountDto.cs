@@ -11,6 +11,5 @@ namespace IRzeszow.Model.Account.Request
         [Required]
         public string Password { get; set; }
         public string Phone { get; set; }
-        public Profession Profession { get; set; }
     }
 }

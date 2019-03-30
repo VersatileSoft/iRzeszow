@@ -10,5 +10,6 @@ namespace IRzeszow.Model.Account.Request
         public string Surename { get; set; }
         public IEnumerable<int> TagIds { get; set; }
         public Genders Gender { get; set; }
+        public Profession Profession { get; set; }
     }
 }

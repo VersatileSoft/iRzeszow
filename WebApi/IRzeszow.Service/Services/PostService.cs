@@ -4,6 +4,7 @@ using IRzeszow.Model.Post.Response;
 using IRzeszow.Repository.Interfaces;
 using IRzeszow.Service.Interfaces;
 using IRzeszow.WebApi.Service.Exception;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,17 +33,7 @@ namespace IRzeszow.Service.Services
             if (tags.Count() != value.TagIds.Count())
                 throw new HttpStatusCodeException(HttpStatusCode.BadRequest, "Tag is not exsist");
 
-            byte[] image = null;
-
-            if (value.Image != null)
-                using (var memoryStream = new MemoryStream())
-                {
-                    await value.Image.CopyToAsync(memoryStream);
-                    var imageToBeUploadedByteArray = memoryStream.ToArray();
-                    image = imageToBeUploadedByteArray;
-                }
-
-            await _postRepository.CreatePostAsync(value, tags, image, OvnerUserId);
+            await _postRepository.CreatePostAsync(value, tags, OvnerUserId);
         }
 
         public async Task<IEnumerable<IEnumerable<PostModel>>> GetRecentPosts(int ovnerUserId)

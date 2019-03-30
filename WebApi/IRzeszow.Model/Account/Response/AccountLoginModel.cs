@@ -7,5 +7,6 @@ namespace IRzeszow.Model.Account.Response
     public class AccountLoginModel
     {
         public string Token { get; set; }
+        public bool IsCompany { get; set; }
     }
 }

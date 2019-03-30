@@ -12,5 +12,7 @@ namespace IRzeszow.Data.Model
         public string Surename { get; set; }
         public Genders Gender { get; set; }
         public virtual IEnumerable<TagToUserData> Tags { get; set; }
+        public Profession Profession { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

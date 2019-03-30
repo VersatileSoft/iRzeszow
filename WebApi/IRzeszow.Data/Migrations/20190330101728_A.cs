@@ -24,19 +24,6 @@ namespace IRzeszow.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Professions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Professions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Tags",
                 columns: table => new
                 {
@@ -57,7 +44,8 @@ namespace IRzeszow.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Surename = table.Column<string>(nullable: true),
-                    Gender = table.Column<int>(nullable: false)
+                    Gender = table.Column<int>(nullable: false),
+                    Profession = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,7 +63,6 @@ namespace IRzeszow.Data.Migrations
                     Phone = table.Column<string>(nullable: true),
                     UserDataId = table.Column<int>(nullable: true),
                     CompanyDataId = table.Column<int>(nullable: true),
-                    ProfessionId = table.Column<int>(nullable: false),
                     Salt = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
@@ -87,12 +74,6 @@ namespace IRzeszow.Data.Migrations
                         principalTable: "CompanyDatas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Accounts_Professions_ProfessionId",
-                        column: x => x.ProfessionId,
-                        principalTable: "Professions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Accounts_UserDatas_UserDataId",
                         column: x => x.UserDataId,
@@ -135,16 +116,17 @@ namespace IRzeszow.Data.Migrations
                     Description = table.Column<string>(nullable: true),
                     DateFrom = table.Column<DateTime>(nullable: false),
                     DateTo = table.Column<DateTime>(nullable: false),
-                    Image = table.Column<byte[]>(nullable: true),
+                    Image = table.Column<string>(nullable: true),
                     PostType = table.Column<string>(nullable: true),
-                    OvnerAccountId = table.Column<int>(nullable: false)
+                    OwnerAccountId = table.Column<int>(nullable: false),
+                    Profession = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Posts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Posts_Accounts_OvnerAccountId",
-                        column: x => x.OvnerAccountId,
+                        name: "FK_Posts_Accounts_OwnerAccountId",
+                        column: x => x.OwnerAccountId,
                         principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -177,22 +159,21 @@ namespace IRzeszow.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Accounts_CompanyDataId",
                 table: "Accounts",
-                column: "CompanyDataId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Accounts_ProfessionId",
-                table: "Accounts",
-                column: "ProfessionId");
+                column: "CompanyDataId",
+                unique: true,
+                filter: "[CompanyDataId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Accounts_UserDataId",
                 table: "Accounts",
-                column: "UserDataId");
+                column: "UserDataId",
+                unique: true,
+                filter: "[UserDataId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Posts_OvnerAccountId",
+                name: "IX_Posts_OwnerAccountId",
                 table: "Posts",
-                column: "OvnerAccountId");
+                column: "OwnerAccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TagToPosts_TagId",
@@ -224,9 +205,6 @@ namespace IRzeszow.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "CompanyDatas");
-
-            migrationBuilder.DropTable(
-                name: "Professions");
 
             migrationBuilder.DropTable(
                 name: "UserDatas");

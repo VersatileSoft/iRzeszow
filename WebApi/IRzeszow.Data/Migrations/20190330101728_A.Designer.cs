@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IRzeszow.Data.Migrations
 {
     [DbContext(typeof(IRzeszowDbContext))]
-    [Migration("20190330024929_A")]
+    [Migration("20190330101728_A")]
     partial class A
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,19 +37,19 @@ namespace IRzeszow.Data.Migrations
 
                     b.Property<string>("Phone");
 
-                    b.Property<int>("ProfessionId");
-
                     b.Property<byte[]>("Salt");
 
                     b.Property<int?>("UserDataId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyDataId");
+                    b.HasIndex("CompanyDataId")
+                        .IsUnique()
+                        .HasFilter("[CompanyDataId] IS NOT NULL");
 
-                    b.HasIndex("ProfessionId");
-
-                    b.HasIndex("UserDataId");
+                    b.HasIndex("UserDataId")
+                        .IsUnique()
+                        .HasFilter("[UserDataId] IS NOT NULL");
 
                     b.ToTable("Accounts");
                 });
@@ -83,32 +83,21 @@ namespace IRzeszow.Data.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<byte[]>("Image");
+                    b.Property<string>("Image");
 
-                    b.Property<int>("OvnerAccountId");
+                    b.Property<int>("OwnerAccountId");
 
                     b.Property<string>("PostType");
+
+                    b.Property<int>("Profession");
 
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OvnerAccountId");
+                    b.HasIndex("OwnerAccountId");
 
                     b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("IRzeszow.Data.Model.Profession", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Professions");
                 });
 
             modelBuilder.Entity("IRzeszow.Data.Model.Tag", b =>
@@ -160,6 +149,8 @@ namespace IRzeszow.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("Profession");
+
                     b.Property<string>("Surename");
 
                     b.HasKey("Id");
@@ -170,24 +161,19 @@ namespace IRzeszow.Data.Migrations
             modelBuilder.Entity("IRzeszow.Data.Model.Account", b =>
                 {
                     b.HasOne("IRzeszow.Data.Model.CompanyData", "CompanyData")
-                        .WithMany()
-                        .HasForeignKey("CompanyDataId");
-
-                    b.HasOne("IRzeszow.Data.Model.Profession", "Profession")
-                        .WithMany("Accounts")
-                        .HasForeignKey("ProfessionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithOne("Account")
+                        .HasForeignKey("IRzeszow.Data.Model.Account", "CompanyDataId");
 
                     b.HasOne("IRzeszow.Data.Model.UserData", "UserData")
-                        .WithMany()
-                        .HasForeignKey("UserDataId");
+                        .WithOne("Account")
+                        .HasForeignKey("IRzeszow.Data.Model.Account", "UserDataId");
                 });
 
             modelBuilder.Entity("IRzeszow.Data.Model.Post", b =>
                 {
-                    b.HasOne("IRzeszow.Data.Model.Account", "OvnerAccount")
+                    b.HasOne("IRzeszow.Data.Model.Account", "OwnerAccount")
                         .WithMany()
-                        .HasForeignKey("OvnerAccountId")
+                        .HasForeignKey("OwnerAccountId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

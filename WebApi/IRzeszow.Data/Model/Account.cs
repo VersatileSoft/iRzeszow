@@ -20,6 +20,6 @@ namespace IRzeszow.Data.Model
 
         public virtual UserData UserData { get; set; }
         public virtual CompanyData CompanyData { get; set; }
-        public Profession Profession { get; set; }
+
     }
 }

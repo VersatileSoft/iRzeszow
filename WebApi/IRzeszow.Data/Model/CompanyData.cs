@@ -10,5 +10,7 @@ namespace IRzeszow.Data.Model
         public string CompanyName { get; set; }
         public string Address { get; set; }
         public string Website { get; set; }
+
+        public virtual Account Account { get; set; }
     }
 }

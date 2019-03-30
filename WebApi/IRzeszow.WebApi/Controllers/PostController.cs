@@ -31,9 +31,9 @@ namespace IRzeszow.WebApi.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Company")]
-        public async Task<ActionResult> Post([FromBody] CreatePostModel value)
+        public async Task<ActionResult> Post([FromBody] CreatePostModel Value)
         {
-            await _postService.Create(value, int.Parse(User.Identity.Name));
+            await _postService.Create(Value, int.Parse(User.Identity.Name));
             return Ok();
         }
 

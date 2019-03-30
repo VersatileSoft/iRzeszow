@@ -1,4 +1,5 @@
-﻿using IRzeszow.Data.Model;
+﻿using IRzeszow.Component.Enums;
+using IRzeszow.Data.Model;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace IRzeszow.Model.Post.Response
         public DateTime DateTo { get; set; }
         public string Image { get; set; }
         public string PostType { get; set; }
+        public Profession Profession { get; set; }
 
         public virtual IEnumerable<int> TagIds { get; set; }
     }

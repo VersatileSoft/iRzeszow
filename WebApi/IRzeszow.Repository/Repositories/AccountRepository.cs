@@ -30,7 +30,6 @@ namespace IRzeszow.Repository.Repositories
                     HashedPassword = Helpers.HashPassword(createCompanyAccountDto.Password, salt),
                     Salt = salt,
                     Phone = createCompanyAccountDto.Phone,     
-                    Profession = createCompanyAccountDto.Profession,
                     CompanyData = new CompanyData
                     {
                         CompanyName = createCompanyAccountDto.CompanyName,
@@ -48,7 +47,8 @@ namespace IRzeszow.Repository.Repositories
             {
                 Name = createUserAccountDto.Name,
                 Surename = createUserAccountDto.Surename,
-                Gender = createUserAccountDto.Gender             
+                Gender = createUserAccountDto.Gender,
+                Profession = createUserAccountDto.Profession,
             };
 
             byte[] salt = Helpers.GenerateSalt();
@@ -60,8 +60,7 @@ namespace IRzeszow.Repository.Repositories
                     HashedPassword = Helpers.HashPassword(createUserAccountDto.Password, salt),
                     Salt = salt,
                     Phone = createUserAccountDto.Phone,
-                    UserData = userData,
-                    Profession = createUserAccountDto.Profession,
+                    UserData = userData,                   
                     CompanyData = null
                 });
 

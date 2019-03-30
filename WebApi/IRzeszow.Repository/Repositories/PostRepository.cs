@@ -21,16 +21,17 @@ namespace IRzeszow.Repository.Repositories
             DbContext = dbContext;
         }
 
-        public async Task CreatePostAsync(CreatePostModel value, IEnumerable<Tag> tags, byte[] image, int OvnerUserId)
+        public async Task CreatePostAsync(CreatePostModel value, IEnumerable<Tag> tags, int OvnerUserId)
         {
             Post post = new Post
             {
-                OvnerAccountId = OvnerUserId,
+                OwnerAccountId = OvnerUserId,
                 DateFrom = value.DateFrom,
                 DateTo = value.DateTo,
                 Description = value.Description,
                 Title = value.Title,
-                Image = image
+                Image = value.Image,
+                Profession = value.Profession
             };
 
             await DbContext.Posts.AddAsync(post);
@@ -50,11 +51,14 @@ namespace IRzeszow.Repository.Repositories
         public async Task<IEnumerable<IEnumerable<PostModel>>> GetRecentPosts(int ovnerUserId)
         {
 
-            IEnumerable<int> UserTags = await DbContext.TagToUserDatas.Where(t => t.UserData.Id == ovnerUserId).Select(t => t.TagId).ToListAsync();
+            var UserTags = DbContext.TagToUserDatas.Include(t => t.UserData.Account).Where(t => t.UserData.Account.Id == ovnerUserId).Select(t => t);
+
 
             List<Post> SortedPosts = await (from Post in DbContext.Posts
-                                            orderby UserTags.Where(u => u == Post.Id).Count()
-                                            select Post).ToListAsync();
+                                            where Post.Tags.Where(p => UserTags.Select(u => u.TagId).Contains(p.TagId)).Count() >= 1              
+                                            orderby Post.Tags.Where(p => UserTags.Select(u => u.TagId).Contains(p.TagId)).Count() 
+                                            orderby UserTags.Where(u => u.UserData.Profession == Post.Profession).Count() descending
+                                            select Post).Include(u => u.Tags).ToListAsync();
 
             List<List<PostModel>> postModels = new List<List<PostModel>>();
 
@@ -70,10 +74,11 @@ namespace IRzeszow.Repository.Repositories
                     DateFrom = SortedPosts[i].DateFrom,
                     DateTo = SortedPosts[i].DateTo,
                     Description = SortedPosts[i].Description,
-                    Image = SortedPosts[i].Image != null ? string.Format("data:image/png;base64,{0}", Convert.ToBase64String(SortedPosts[i].Image)) : null,
+                    Image = SortedPosts[i].Image,
                     Title = SortedPosts[i].Title,
                     PostType = SortedPosts[i].PostType,
-                    TagIds = SortedPosts[i].Tags.Select(t => t.TagId)
+                    TagIds = SortedPosts[i].Tags.Select(t => t.TagId),
+                    Profession = SortedPosts[i].Profession
                 });
             }
 
