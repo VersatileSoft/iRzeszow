@@ -27,7 +27,7 @@ class RegisterCompanyComponent extends Component {
             website: this.props.companyData.website
         };
     
-        axios.post(this.props.ip + '/Account/user', data)
+        axios.post(this.props.ip + '/Account/company', data)
         .then(res =>{
             console.log(res)
             this.props.updateRegisterState(0);
@@ -112,7 +112,8 @@ class RegisterCompanyComponent extends Component {
 const mapStateToProps = (state) =>{
     return{
         companyData: state.data.companyData,
-        userData: state.data.userData
+        userData: state.data.userData,
+        ip: state.global.ip
     }
 }
 

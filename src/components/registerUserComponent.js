@@ -69,7 +69,7 @@ class RegisterUserComponent extends Component {
                                 component="input"
                                 onInput={ e => {this.handleChange('name', e.target.value)}}
                                 render={({input, meta}) => (
-                                    <input type="text" {...input} id="user" required/>
+                                    <input type="text" id="user" required/>
                                 )}
                             />
                         <label htmlFor="user">Imię</label>
@@ -80,7 +80,7 @@ class RegisterUserComponent extends Component {
                                 component="input"
                                 onInput={ e => {this.handleChange('surname', e.target.value)}}
                                 render={({input, meta}) => (
-                                    <input type="text" {...input} id="surname" name="surname" required/>
+                                    <input type="text" id="surname" required/>
                                 )}
                             />
                         <label htmlFor="surname">Nazwisko</label>
@@ -91,7 +91,7 @@ class RegisterUserComponent extends Component {
                                 component="input"
                                 onInput={ e => {this.handleChange('password', e.target.value)}}
                                 render={({input, meta}) => (
-                                    <input type="text" {...input} id="password" name="password" required/>
+                                    <input type="text" id="password" required/>
                                 )}
                             />
                         <label htmlFor="password">Hasło</label>
@@ -103,7 +103,7 @@ class RegisterUserComponent extends Component {
                                 component="input"
                                 onInput={ e => {this.handleRChange('r_pass', e.target.value)}}
                                 render={({input, meta}) => (
-                                    <input type="text" {...input} id="r_pass" name="r_pass" required/>
+                                    <input type="text" id="r_pass" required/>
                                 )}
                             />
                         <label htmlFor="r_pass">Powtórz hasło</label>
@@ -116,7 +116,7 @@ class RegisterUserComponent extends Component {
                                 component="input"
                                 onInput={ e => {this.handleChange('email', e.target.value)}}
                                 render={({input, meta}) => (
-                                    <input type="text" {...input} id="email" name="email" required/>
+                                    <input type="text" id="email" required/>
                                 )}
                             />
                         <label htmlFor="email">E-mail</label>
