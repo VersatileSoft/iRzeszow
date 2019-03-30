@@ -51,7 +51,7 @@ class RegisterPreferencesComponent extends Component {
     }
 
     handleProfessionChange = (e) => {
-        console.log(e);
+        console.log(this.props);
         this.props.updatePreferences("professionId", e);
     }
 
@@ -107,7 +107,8 @@ class RegisterPreferencesComponent extends Component {
 
 const mapStateToProps = (state) =>{
     return{
-        ip: state.global.ip
+        ip: state.global.ip,
+        userData: state.data.userData
     }
 }
 
