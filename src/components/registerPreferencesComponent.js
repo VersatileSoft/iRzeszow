@@ -40,8 +40,18 @@ class RegisterPreferencesComponent extends Component {
     }
 
     submitForm = () => {
-        console.log(this.props.userData)
-        axios.post(this.props.ip + '/Account/user', this.props.userData)
+        console.log(this.props.userData.tagIds.map((item) => ({Id: item.value})));
+        let data = {
+            name: this.props.userData.name,
+            surname: this.props.userData.surname,
+            password: this.props.userData.password,
+            gender: this.props.userData.gender,
+            email: this.props.userData.email,
+            professionId: this.props.userData.professionId.value,
+            tagIds: this.props.userData.tagIds.map((item) => item.value)
+        };
+    
+        axios.post(this.props.ip + '/Account/user', data)
         .then(res =>{
             this.props.updateRegisterState(0);
         })
@@ -94,6 +104,7 @@ class RegisterPreferencesComponent extends Component {
                                         {value: 2, label: "Mid-level"},
                                         {value: 3, label: "Senior"},
                                     ]}
+                                    
                                     onChange={this.handleProfessionChange}/>
                             </div>
                             <button type="submit">Zatwierdź</button>
