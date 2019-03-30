@@ -72,22 +72,22 @@ class Main extends Component {
                     </div>
                 </header>
                 <section className="main-square" id="0">
-                    { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][0]}/> : <div/>}
+                    { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][0][0]}/> : <div/>}
                 </section>
                 <section className="lower-squares" >
                     <div className="middle-square" id="1">
-                        { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][1]}/> : <div/>}
+                        { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][1][1]}/> : <div/>}
                     </div>
                     <div className="rest">
                         <div className="adv" id="2">
-                            { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][2]}/> : <div/>}
+                            { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][2][1]}/> : <div/>}
                         </div>
                         <div className="smallest-squares">
                             <div className="smallest-square-1" id="3">
-                                { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][3]}/> : <div/>}
+                                { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][3][1]}/> : <div/>}
                             </div>
                             <div className="smallest-square-2" id="4">
-                                { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][4]}/> : <div/>}
+                                { (this.hasPosts()) ? <SinglePost data={ this.props.posts[0][4][1]}/> : <div/>}
                             </div>
                         </div>
                     </div>
