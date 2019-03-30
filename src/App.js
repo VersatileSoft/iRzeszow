@@ -9,6 +9,7 @@ import RegisterUserComponent from './components/registerUserComponent';
 import RegisterMainComponent from './components/registerMainComponent';
 import RegisterPreferencesComponent from './components/registerPreferencesComponent';
 import SignInComponent from './components/signInComponent';
+import CreatePostComponent from './components/createPostComponent';
 
 class App extends Component {
 
@@ -32,12 +33,8 @@ class App extends Component {
       <Switch>
         <Route exact path="/" render={() => <Main />}></Route>
         <Route path="/register" render={() => <RegisterMainComponent />}></Route>
-<<<<<<< HEAD
         <Route path="/sign" render={() => <SignInComponent cookies={this.props.cookies} />}></Route>
-=======
-        <Route path="/sign" render={() => <SignInComponent />}></Route>
-        <Route path="/preferences" render={() => <RegisterPreferencesComponent />}></Route>
->>>>>>> 8fd7ddfa2be6215bf4e98a67e1f8c5e74111aebc
+        <Route path="/post" render={() => <CreatePostComponent cookies={this.props.cookies} />}></Route>
       </Switch>
     );
   }
