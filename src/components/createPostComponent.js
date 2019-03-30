@@ -81,8 +81,8 @@ class CreatePostComponent extends Component {
         data.append('dateFrom', this.props.pendingPost.dateFrom.toISOString());
         data.append('dateTo', this.props.pendingPost.dateTo.toISOString());
         data.append('postType', this.props.pendingPost.postType);
-        data.append('profession', 1);
-        //data.set("tagIds", );
+        data.append('profession', this.props.pendingPost.profession);
+        data.append("tagIds", JSON.stringify(this.props.pendingPost.tagIds));
 
         data.append('image', this.props.pendingPost.image);
 
@@ -135,7 +135,8 @@ class CreatePostComponent extends Component {
             <div className="all">
                 <div className="form-box">
                     <img src={Logo} alt="logo" />
-                    <p>Utwórz wydarzenie</p>
+                    <p>Utwórz</p>
+                    <p>wydarzenie</p>
                     <Form
                         onSubmit={this.submitForm}
                         render={({ handleSubmit, pristine, invalid }) => (
@@ -162,18 +163,30 @@ class CreatePostComponent extends Component {
                                     />
                                     <label htmlFor="description">Opis</label>
                                 </div>
-                                <div className="input-wrapper data-picker">
+                                <div className="input-wrapper">
                                     <p>Od</p>
                                     <DatePicker
                                         selected={this.props.pendingPost.dateFrom}
                                         onChange={this.handleFromChange}
                                     />
                                 </div>
-                                <div className="input-wrapper data-picker">
+                                <div className="input-wrapper">
                                     <p>Do</p>
                                     <DatePicker
                                         selected={this.props.pendingPost.dateTo}
                                         onChange={this.handleToChange}
+                                    />
+                                </div>
+                                <div className="input-wrapper">
+                                    <ImageUploader
+                                        withIcon={false}
+                                        accept='accept=image/png'
+                                        label="Pliki .png do 5 MB"
+                                        singleImage="true"
+                                        buttonText='Wybierz zdjęcie'
+                                        onChange={this.onDrop}
+                                        imgExtension={['.png']}
+                                        maxFileSize={5242880}
                                     />
                                 </div>
                                 <div className="input-wrapper">
@@ -188,20 +201,7 @@ class CreatePostComponent extends Component {
                                     <label htmlFor="postType">Kategoria</label>
                                 </div>
                                 <div className="input-wrapper">
-                                    <ImageUploader
-                                        withIcon={false}
-                                        accept='accept=image/png'
-                                        label="Pliki .png do 5 MB"
-                                        singleImage="true"
-                                        buttonText='Wybierz zdjęcie'
-                                        onChange={this.onDrop}
-                                        imgExtension={['.png']}
-                                        maxFileSize={5242880}
-                                    />
-                                </div>
-                                <div class="select">
-                                <div className="input-wrapper">
-                                    <div>Podaj tematykę</div>
+                                    <p>Podaj swoje zainteresowania</p>
                                     <Select
                                         formatGroupLabel={formatGroupLabel}
                                         name="profession"
@@ -210,10 +210,21 @@ class CreatePostComponent extends Component {
                                         options={this.state.mappedTags}
                                         onChange={this.handleTagChange} />
                                 </div>
+                                <div className="input-wrapper">
+                                    <p>Podaj swój staż</p>
+                                    <Select
+                                        formatGroupLabel={formatGroupLabel}
+                                        name="profession"
+                                        options={[
+                                            { value: 1, label: "Junior" },
+                                            { value: 2, label: "Mid-level" },
+                                            { value: 3, label: "Senior" },
+
+                                        ]}
+
+                                        onChange={this.handleProfessionChange} />
                                 </div>
-                                <div class="submits">
-                                 <button type="submit">Zatwierdź</button>
-                                </div>
+                                <button type="submit">Zatwierdź</button>
                             </form>
                         )}
                     />
