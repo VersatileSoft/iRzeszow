@@ -10,11 +10,10 @@ class RegisterMainComponent extends Component {
     render() {
 
         //Get from redux main state
-
         let component = null;
         switch (this.props.registerState) {
             case 0: 
-            component = <MainComponent/>; break;
+                component = <MainComponent/>; break;
             case 2: 
                 component = <RegisterCompanyComponent/>; break;
             case 3: 
@@ -23,9 +22,7 @@ class RegisterMainComponent extends Component {
                 component = <RegisterUserComponent/>; break;
         }
         return (
-            <div>
-                {component}
-            </div>
+            component
         )
     }
 

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import '../styles/UniversalForm.scss';
 import { updateRegisterState } from '../actions/signUpActions/updateActions/updateRegisterState';
 import { updateUser } from '../actions/signUpActions/updateActions/updateUser';
+import Logo from '../images/logo_transparent.png';
 
 class RegisterUserComponent extends Component {
 
@@ -39,6 +40,11 @@ class RegisterUserComponent extends Component {
 
     render() {
         return (
+            <div className="all">
+            <div className="form-box">
+            <img src={Logo} alt="logo" />
+            <p>Zarejestruj</p>
+            <p>się</p>
             <Form 
                 onSubmit={this.submitForm}
                 validate={this.validateForm}
@@ -53,7 +59,7 @@ class RegisterUserComponent extends Component {
                                     <input type="text" id="user" name="name" required/>
                                 )}
                             />
-                        <label htmlFor="user">Nazwa użytkownika</label>
+                        <label htmlFor="user">Imię</label>
                     </div>
                     <div className="input-wrapper">
                         <Field
@@ -64,7 +70,7 @@ class RegisterUserComponent extends Component {
                                     <input type="text" id="surname" name="surname" required/>
                                 )}
                             />
-                        <label htmlFor="surname">Nazwa użytkownika</label>
+                        <label htmlFor="surname">Nazwisko</label>
                     </div>
                     <div className="input-wrapper">
                         <Field
@@ -75,7 +81,7 @@ class RegisterUserComponent extends Component {
                                     <input type="text" id="password" name="password" required/>
                                 )}
                             />
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">Hasło</label>
                     </div>
 
                     <div className="input-wrapper">
@@ -107,6 +113,8 @@ class RegisterUserComponent extends Component {
                 </form>
             )}
         />
+        </div>
+        </div>
         );
     }
 }
