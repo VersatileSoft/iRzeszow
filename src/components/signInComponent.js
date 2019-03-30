@@ -14,15 +14,22 @@ class SignInComponent extends Component {
         this.props.updateLogInData(name, value)
     }
 
+    componentDidMount(){
+        const { cookies } = this.props
+        if(cookies.get('token') !== undefined){
+            this.props.history.push('/home')
+        }
+    }
+
     submitForm = () => {
         axios.post(this.props.ip + '/Auth', this.props.signIn)
             .then(res => {
                 const { cookies } = this.props
                 cookies.set('token', res.data.token, { path: '/' })
-                this.props.history.push('/')
+                this.props.history.push('/home')
             })
             .catch(err => {
-
+                console.log(err)
             })
     }
 
@@ -54,14 +61,15 @@ class SignInComponent extends Component {
                                     <div className="input-wrapper">
                                         <Field
                                             name="password"
+                                            type="password"
                                             placeholder="Hasło"
                                             component="input"
                                             onInput={e => { this.handleChange('password', e.target.value) }}
                                         />
                                     </div>
                                     <p>Zapomniałeś hasła?</p>
-                                    <div class="submits">
-                                        <button type="submit" class="registration-button" onClick={this.handleClick}>Rejestracja</button>
+                                    <div className="submits">
+                                        <button type="submit" className="registration-button" onClick={this.handleClick}>Rejestracja</button>
                                         <button type="submit" >Zatwierdź</button>
                                     </div>
                                 </form>

@@ -5,6 +5,7 @@ import Logo from '../images/logo_transparent.png';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { savePosts } from '../actions/postsActions/savePosts';
+import { withCookies } from 'react-cookie';
 
 class Main extends Component {
 
@@ -20,6 +21,14 @@ class Main extends Component {
             .catch(err => {
 
             })
+    }
+
+    logOut = () =>{
+        const { cookies } = this.props
+        cookies.remove('token')
+        if(cookies.get('token') === undefined){
+            this.props.history.push('/')
+        }
     }
 
 
@@ -44,7 +53,7 @@ class Main extends Component {
                     <div className="list">
                         <div>Start</div>
                         <div>Ustawienia</div>
-                        <div>Wyloguj</div>
+                        <div onClick={this.logOut}>Wyloguj</div>
                     </div>
                 </header>
                 <section className="main-square">
@@ -91,4 +100,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Main));
+export default connect(mapStateToProps, mapDispatchToProps)(withCookies(withRouter(Main)));

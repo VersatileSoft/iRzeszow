@@ -89,9 +89,10 @@ class RegisterUserComponent extends Component {
                                     <Field
                                         name="password"
                                         component="input"
+                                        type="password"
                                         onInput={e => { this.handleChange('password', e.target.value) }}
                                         render={({ input, meta }) => (
-                                            <input type="text" id="password" required />
+                                            <input type="password" id="password" required />
                                         )}
                                     />
                                     <label htmlFor="password">Hasło</label>
@@ -101,9 +102,10 @@ class RegisterUserComponent extends Component {
                                     <Field
                                         name="r_pass"
                                         component="input"
+                                        type="password"
                                         onInput={e => { this.handleRChange('r_pass', e.target.value) }}
                                         render={({ input, meta }) => (
-                                            <input type="text" id="r_pass" required />
+                                            <input type="password" id="r_pass" required />
                                         )}
                                     />
                                     <label htmlFor="r_pass">Powtórz hasło</label>

@@ -114,7 +114,6 @@ class RegisterPreferencesComponent extends Component {
                                     <p>Podaj swoje zainteresowania</p>
                                     <Select
                                         formatGroupLabel={formatGroupLabel}
-                                        name="profession"
                                         isMulti
                                         name="tag"
                                         options={this.state.mappedTags}

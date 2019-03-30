@@ -19,7 +19,7 @@ const holdPostsReducer = (state = initState, action) =>{
                 ...state,
                 posts: [...state.posts, action.posts]
             }
-        case 'SAVE_INCOMING_POST':
+        case 'SAVE_POST':
             return{
                 ...state,
                 post: action.value

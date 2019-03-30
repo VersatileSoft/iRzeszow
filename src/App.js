@@ -4,10 +4,7 @@ import { Switch, Route } from 'react-router';
 import { withCookies } from 'react-cookie';
 import Main from './components/mainComponent';
 import axios from 'axios';
-import RegisterCompanyComponent from './components/registerCompanyComponent';
-import RegisterUserComponent from './components/registerUserComponent';
 import RegisterMainComponent from './components/registerMainComponent';
-import RegisterPreferencesComponent from './components/registerPreferencesComponent';
 import SignInComponent from './components/signInComponent';
 import CreatePostComponent from './components/createPostComponent';
 
@@ -31,9 +28,9 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" render={() => <Main />}></Route>
+        <Route exact path="/" render={() => <SignInComponent cookies={this.props.cookies} />}></Route>
         <Route path="/register" render={() => <RegisterMainComponent />}></Route>
-        <Route path="/sign" render={() => <SignInComponent cookies={this.props.cookies} />}></Route>
+        <Route path="/home" render={() => <Main />}></Route>
         <Route path="/post" render={() => <CreatePostComponent cookies={this.props.cookies} />}></Route>
       </Switch>
     );

@@ -28,7 +28,6 @@ class CreatePostComponent extends Component {
                 this.mapTags();
             })
             .catch(err => {
-
             })
     }
 
@@ -177,7 +176,6 @@ class CreatePostComponent extends Component {
                                     <div>Podaj tematykę</div>
                                     <Select
                                         formatGroupLabel={formatGroupLabel}
-                                        name="profession"
                                         isMulti
                                         name="tag"
                                         options={this.state.mappedTags}
