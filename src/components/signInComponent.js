@@ -7,7 +7,7 @@ import { withRouter } from 'react-router';
 import '../styles/UniversalForm.scss';
 import Logo from '../images/logo_transparent.png';
 
-class SignIn extends Component {
+class SignInComponent extends Component {
 
     handleChange = (name, value) =>{
         this.props.updateLogInData(name,value)
@@ -78,4 +78,4 @@ const mapDispatchToProps = (dispatch) =>{
     }
   }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignIn));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignInComponent));

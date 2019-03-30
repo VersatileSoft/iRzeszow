@@ -34,11 +34,11 @@ html,body {
         border: 0px solid #000000;
         color: #004a55;
         img{
-            width: 12vw;
-            height: 12vw;
+            width: 10vw;
+            height: 10vw;
         }
         p{
-            font-size: 2.3vw;
+            font-size: 1.8vw;
         }
     }
         .form{
@@ -66,6 +66,8 @@ html,body {
                 .input-wrapper{
                     align-items: stretch;
                     justify-content: flex-end;
+                    padding-top: 0.5vh;
+                    padding-bottom: 0.5vh;
                 }
             }
             .input-wrapper {
@@ -75,6 +77,9 @@ html,body {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                p{
+                    font-size: 1.8vh;
+                }
                 .k{
                     margin-left: 2vw;
                 }
