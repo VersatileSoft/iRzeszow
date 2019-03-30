@@ -133,7 +133,9 @@ class RegisterUserComponent extends Component {
                                         <Switch onChange={this.handleCompanyChange} checked={this.state.isCompany} />
                                     </div>
                                 </div>
-                                <button type="submit">Zatwierdź</button>
+                                <div class="submits">
+                                 <button type="submit">Zatwierdź</button>
+                                </div>
                             </form>
                         )}
                     />
