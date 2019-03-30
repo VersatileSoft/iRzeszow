@@ -12,14 +12,14 @@ class RegisterMainComponent extends Component {
         //Get from redux main state
         let component = null;
         switch (this.props.registerState) {
-            case 0: 
-                component = <MainComponent/>; break;
-            case 2: 
-                component = <RegisterCompanyComponent/>; break;
-            case 3: 
-                component = <RegisterPreferencesComponent/>; break;
+            case 0:
+                component = <MainComponent />; break;
+            case 2:
+                component = <RegisterCompanyComponent />; break;
+            case 3:
+                component = <RegisterPreferencesComponent />; break;
             default:
-                component = <RegisterUserComponent/>; break;
+                component = <RegisterUserComponent />; break;
         }
         return (
             component
@@ -28,8 +28,8 @@ class RegisterMainComponent extends Component {
 
 }
 
-const mapStateToProps = (state) =>{
-    return{
+const mapStateToProps = (state) => {
+    return {
         registerState: state.global.registerState
     }
 }
