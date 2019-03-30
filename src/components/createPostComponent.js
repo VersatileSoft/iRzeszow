@@ -11,6 +11,8 @@ import axios from 'axios';
 import Logo from '../images/logo_transparent.png';
 import '../styles/UniversalForm.scss';
 import "react-datepicker/dist/react-datepicker.css";
+import { Cookies } from 'react-cookie';
+import { array, arrayOf } from 'C:/Users/wiedz/AppData/Local/Microsoft/TypeScript/3.3/node_modules/@types/prop-types';
 
 class CreatePostComponent extends Component {
 
@@ -44,7 +46,8 @@ class CreatePostComponent extends Component {
     }
 
     onDrop = (picture) => {
-        this.props.pendingPost.image = picture
+        console.log(picture);
+        this.props.pendingPost.image = picture[0]
     }
 
     handleFromChange = (e) => {
@@ -69,7 +72,31 @@ class CreatePostComponent extends Component {
 
     submitForm = () => {
         console.log(this.props);
-        axios.post(this.props.ip + '/Post', this.props.pendingPost)
+
+        const { cookies } = this.props;
+        let data = new FormData();
+        
+        data.append('title', this.props.pendingPost.title);
+        data.append('description', this.props.pendingPost.description);
+        data.append('dateFrom', this.props.pendingPost.dateFrom.toISOString());
+        data.append('dateTo', this.props.pendingPost.dateTo.toISOString());
+        data.append('postType', this.props.pendingPost.postType);
+        data.append('profession', 1);
+        //data.set("tagIds", );
+
+        data.append('image', this.props.pendingPost.image);
+
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': 'bearer ' + cookies.get('token')
+            }
+        };
+
+        console.log(data);
+        console.log(config);
+
+        axios.post(this.props.ip + '/Post', data, config)
             .then(res => {
                 this.props.sendPost(this.props.pendingPost);
             })
