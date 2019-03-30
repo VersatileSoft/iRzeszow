@@ -16,12 +16,14 @@ class RegisterPreferencesComponent extends Component {
     }
 
     componentDidMount(){
+        console.log("aba");
         axios.get( this.props.ip + '/Tag')
         .then(res =>{
             console.log(res.data);
             this.setState({
                 tags: res.data
             })
+            this.mapTags();
         })
         .catch(err =>{
 
@@ -29,13 +31,14 @@ class RegisterPreferencesComponent extends Component {
     }
 
     mapTags = () =>{
-        const mappedTags = this.state.tags.map(tag =>
+        let mappedTag = this.state.tags.map(tag =>
         ({
                 value: tag.id, 
                 label: tag.name
         }));
+        console.log(mappedTag);
         this.setState({
-            mappedTags
+            mappedTags: mappedTag
         })
     }
 
@@ -45,6 +48,15 @@ class RegisterPreferencesComponent extends Component {
 
     handleChange = (name, value) => {
         this.props.updatePreferences(name,value);
+    }
+
+    handleProfessionChange = (e) => {
+        this.props.updatePreferences("professionId", e.target.value);
+    }
+
+    handleTagChange = (e) => {
+        this.props.updatePreferences("tagIds", e.target.value);
+        console.log(this.props)
     }
 
     validateForm = () => {
@@ -63,10 +75,20 @@ class RegisterPreferencesComponent extends Component {
                     render={({ handleSubmit, pristine, invalid }) => (
                         <form className="form" onSubmit={handleSubmit}>
                             <div className="input-wrapper">
-                            <Select
-                                isMulti
-                                name="colors"
-                                options={this.state.mappedTags}/>
+                                <Select
+                                    isMulti
+                                    name="tag"
+                                    options={this.state.mappedTags}
+                                    onChange={this.handleTagChange}/>
+                                <Select
+                                    name="profession"
+                                    options={[
+                                        {value: 1, label: "Junior"},
+                                        {value: 2, label: "Mid-level"},
+                                        {value: 3, label: "Senior"},
+                                    ]}
+                                    onChange={this.handleProfessionChange}/>
+                                <button type="submit">Zatwierdź</button>
                              </div>
                         </form>
                     )}
