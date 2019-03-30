@@ -27,6 +27,8 @@ class Main extends Component {
         };
         axios.get(this.props.ip + '/Post', config)
             .then(res => {
+                console.log("this")
+                console.log(res.data)
                 this.props.savePosts(res.data)
                 this.setState({data: res.data})
             })
