@@ -115,13 +115,6 @@ class RegisterUserComponent extends Component {
                         <label htmlFor="r_pass">Powtórz hasło</label>
                     </div>
 
-                    <div className="input-wrapper">
-                        <Switch onChange={this.handleGenderChange} checked={this.state.isMale}/>
-                    </div>
-
-                    <div className="input-wrapper">
-                        <Switch onChange={this.handleCompanyChange} checked={this.state.isCompany}/>
-                    </div>
 
                     <div className="input-wrapper">
                         <Field
@@ -134,9 +127,19 @@ class RegisterUserComponent extends Component {
                             />
                         <label htmlFor="email">E-mail</label>
                     </div>
+                    <div class="switches">
+                        <div className="input-wrapper">
+                            <a className="m">Mężczyzna</a>
+                            <Switch onChange={this.handleGenderChange} checked={this.state.isMale}/>
+                            <a className="k">Kobieta</a>
+                        </div>
 
+                        <div className="input-wrapper">
+                            <a class="company_question">Czy chcesz założyć konto firmowe</a>
+                            <Switch onChange={this.handleCompanyChange} checked={this.state.isCompany}/>
+                        </div>
+                    </div>
                     <button type="submit">Zatwierdź</button>
-
                 </form>
             )}
         />
