@@ -36,7 +36,6 @@ class RegisterPreferencesComponent extends Component {
                 value: tag.id, 
                 label: tag.name
         }));
-        console.log(mappedTag);
         this.setState({
             mappedTags: mappedTag
         })
@@ -51,7 +50,8 @@ class RegisterPreferencesComponent extends Component {
     }
 
     handleProfessionChange = (e) => {
-        this.props.updatePreferences("professionId", e.target.value);
+        console.log(e);
+        this.props.updatePreferences("professionId", e.value);
     }
 
     handleTagChange = (e) => {
