@@ -86,9 +86,7 @@ class CreatePostComponent extends Component {
 
     submitForm = () => {
         console.log(this.props);
-
         const { cookies } = this.props;
-
         const config = {
             headers: {
                 'Authorization': 'bearer ' + cookies.get('token')
@@ -98,6 +96,7 @@ class CreatePostComponent extends Component {
         axios.post(this.props.ip + '/Post', this.props.pendingPost, config)
             .then(res => {
                 this.props.sendPost(this.props.pendingPost);
+                this.props.hitory.push('/home');
             })
             .catch(err => {
                 console.log(err)

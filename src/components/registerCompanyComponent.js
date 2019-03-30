@@ -29,7 +29,6 @@ class RegisterCompanyComponent extends Component {
 
         axios.post(this.props.ip + '/Account/company', data)
             .then(res => {
-                console.log(res)
                 this.props.updateRegisterState(0);
             })
             .catch(err => {
