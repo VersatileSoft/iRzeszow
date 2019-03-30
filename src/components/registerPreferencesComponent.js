@@ -50,6 +50,15 @@ class RegisterPreferencesComponent extends Component {
         this.props.updatePreferences(name,value);
     }
 
+    handleProfessionChange = (e) => {
+        this.props.updatePreferences("professionId", e.target.value);
+    }
+
+    handleTagChange = (e) => {
+        this.props.updatePreferences("tagIds", e.target.value);
+        console.log(this.props)
+    }
+
     validateForm = () => {
     }
 
@@ -68,8 +77,18 @@ class RegisterPreferencesComponent extends Component {
                             <div className="input-wrapper">
                                 <Select
                                     isMulti
-                                    name="colors"
-                                    options={this.state.mappedTags}/>
+                                    name="tag"
+                                    options={this.state.mappedTags}
+                                    onChange={this.handleTagChange}/>
+                                <Select
+                                    name="profession"
+                                    options={[
+                                        {value: 1, label: "Junior"},
+                                        {value: 2, label: "Mid-level"},
+                                        {value: 3, label: "Senior"},
+                                    ]}
+                                    onChange={this.handleProfessionChange}/>
+                                <button type="submit">Zatwierdź</button>
                              </div>
                         </form>
                     )}
