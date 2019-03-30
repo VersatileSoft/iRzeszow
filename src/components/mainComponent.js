@@ -9,11 +9,20 @@ import { withCookies } from 'react-cookie';
 
 class Main extends Component {
 
-    handleClick = () => {
-        this.props.history.push('/register')
-    }
-
     componentDidMount() {
+        const { cookies } = this.props
+        if(cookies.get('token') !== undefined){
+            axios.interceptors.request.use(function(config) {
+            const token = cookies.get('token');
+            if( token != null ){
+                config.headers.Authorization = `Bearer ${token}`;
+            }
+            return config;
+            },function(err){
+                return Promise.reject(err);
+            });
+        }
+
         axios.get(this.props.ip + '/Post')
             .then(res => {
                 this.props.savePosts(res.data)
