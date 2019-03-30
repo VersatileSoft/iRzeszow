@@ -6,7 +6,7 @@ const initState = {
         description: "",
         dateFrom: new Date(),
         dateTo: new Date(),
-        image: null,
+        image: {},
         postType: "",
         tagIds: []
     }  

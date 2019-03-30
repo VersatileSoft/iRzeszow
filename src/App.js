@@ -7,6 +7,7 @@ import axios from 'axios';
 import RegisterMainComponent from './components/registerMainComponent';
 import SignInComponent from './components/signInComponent';
 import CreatePostComponent from './components/createPostComponent';
+import SinglePost from './components/singlePost';
 
 class App extends Component {
 
@@ -32,6 +33,7 @@ class App extends Component {
         <Route path="/register" render={() => <RegisterMainComponent />}></Route>
         <Route path="/home" render={() => <Main />}></Route>
         <Route path="/post" render={() => <CreatePostComponent cookies={this.props.cookies} />}></Route>
+        <Route path="/singlePost" render={() => <SinglePost />}></Route>
       </Switch>
     );
   }
