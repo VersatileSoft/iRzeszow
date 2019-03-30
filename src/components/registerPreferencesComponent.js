@@ -92,6 +92,7 @@ class RegisterPreferencesComponent extends Component {
                                         {value: 2, label: "Mid-level"},
                                         {value: 3, label: "Senior"},
                                     ]}
+                                    
                                     onChange={this.handleProfessionChange}/>
                             </div>
                             <button type="submit">Zatwierdź</button>

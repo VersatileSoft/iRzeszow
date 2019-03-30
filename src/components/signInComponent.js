@@ -53,8 +53,11 @@ class SignIn extends Component {
                                             onInput={ e => {this.handleChange('password', e.target.value)}}
                                         />
                                     </div>
-
-                                    <button type="submit">Zatwierdź</button>
+                                    <p>Zapomniałeś hasła?</p>
+                                    <div class="submits">
+                                        <button type="submit" class="registration-button">Rejestracja</button>
+                                        <button type="submit" >Zatwierdź</button>
+                                    </div>
                                 </form>
                             </div>
                         )}
