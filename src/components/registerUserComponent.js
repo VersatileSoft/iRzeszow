@@ -16,18 +16,13 @@ class RegisterUserComponent extends Component {
     }
 
     submitForm = () => {
+        console.log(this.props.userData)
         if (this.state.isCompany) {
             this.props.updateRegisterState(2)
         } else {
             this.props.updateRegisterState(3)
         }
         
-        // axios.post(this.props.ip + '/Account/user', this.props.userData )
-        // .then(res =>{
-        // })
-        // .catch(err =>{
-        //     console.log(err)
-        // })
     }
 
     handleGenderChange = () => {
@@ -44,6 +39,7 @@ class RegisterUserComponent extends Component {
     }
 
     handleChange(name, value) {
+        console.log(name)
        this.props.updateUser(name,value)
     }
 
@@ -58,6 +54,7 @@ class RegisterUserComponent extends Component {
     }
 
     render() {
+        console.log(this.props.userData)
         return (
             <div className="all">
             <div className="form-box">
@@ -127,7 +124,7 @@ class RegisterUserComponent extends Component {
                             />
                         <label htmlFor="email">E-mail</label>
                     </div>
-                    <div class="switches">
+                    <div className="switches">
                         <div className="input-wrapper">
                             <a className="m">Mężczyzna</a>
                             <Switch onChange={this.handleGenderChange} checked={this.state.isMale}/>
@@ -135,7 +132,7 @@ class RegisterUserComponent extends Component {
                         </div>
 
                         <div className="input-wrapper">
-                            <a class="company_question">Czy chcesz założyć konto firmowe</a>
+                            <a className="company_question">Czy chcesz założyć konto firmowe</a>
                             <Switch onChange={this.handleCompanyChange} checked={this.state.isCompany}/>
                         </div>
                     </div>
