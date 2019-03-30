@@ -12,7 +12,7 @@ class RegisterPreferencesComponent extends Component {
 
     state = {
         tags: [],
-        mappedTags: null
+        mappedTags: []
     }
 
     componentDidMount(){
