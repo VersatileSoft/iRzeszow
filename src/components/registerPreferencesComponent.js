@@ -53,9 +53,9 @@ class RegisterPreferencesComponent extends Component {
         return (
             <div className="all">
             <div className="form-box">
-             <img src={Logo} alt="logo" />
-                    <p>Zarejestruj</p>
-                    <p>się</p>
+            <img src={Logo} alt="logo" />
+            <p>Zarejestruj</p>
+            <p>się</p>
                 <Form 
                     onSubmit={this.submitForm}
                     validate={this.validateForm}
