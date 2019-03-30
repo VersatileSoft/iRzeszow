@@ -16,10 +16,8 @@ class RegisterPreferencesComponent extends Component {
     }
 
     componentDidMount(){
-        console.log("aba");
         axios.get( this.props.ip + '/Tag')
         .then(res =>{
-            console.log(res.data);
             this.setState({
                 tags: res.data
             })
@@ -36,14 +34,21 @@ class RegisterPreferencesComponent extends Component {
                 value: tag.id, 
                 label: tag.name
         }));
-        console.log(mappedTag);
         this.setState({
             mappedTags: mappedTag
         })
     }
 
     submitForm = () => {
-        this.props.updateRegisterState(0);
+        console.log('dupa')
+        axios.post(this.props.ip + '/Account/user', this.props.userData)
+        .then(res =>{
+            console.log(res)
+            this.props.updateRegisterState(0);
+        })
+        .catch(err =>{
+            console.log(err)
+        })
     }
 
     handleChange = (name, value) => {
@@ -51,12 +56,10 @@ class RegisterPreferencesComponent extends Component {
     }
 
     handleProfessionChange = (e) => {
-        console.log(e);
         this.props.updatePreferences("professionId", e);
     }
 
     handleTagChange = (e) => {
-        console.log(e);
         this.props.updatePreferences("tagIds", e);
     }
 
@@ -108,7 +111,8 @@ class RegisterPreferencesComponent extends Component {
 
 const mapStateToProps = (state) =>{
     return{
-        ip: state.global.ip
+        ip: state.global.ip,
+        userData: state.data.userData
     }
 }
 

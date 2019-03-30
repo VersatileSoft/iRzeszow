@@ -5,7 +5,6 @@ const initState = {
         password: '',
         gender: 0,
         email: '',
-        phone: '',
         professionId: 1,
         tagIds: [1]
     },

@@ -39,7 +39,6 @@ class RegisterUserComponent extends Component {
     }
 
     handleChange(name, value) {
-        console.log(name)
        this.props.updateUser(name,value)
     }
 
@@ -50,11 +49,9 @@ class RegisterUserComponent extends Component {
      }
 
     validateForm() {
-        console.log("BB");
     }
 
     render() {
-        console.log(this.props.userData)
         return (
             <div className="all">
             <div className="form-box">
@@ -132,7 +129,7 @@ class RegisterUserComponent extends Component {
                         </div>
 
                         <div className="input-wrapper">
-                            <a class="company_question">Czy chcesz założyć konto firmowe</a>
+                            <a className="company_question">Czy chcesz założyć konto firmowe</a>
                             <Switch onChange={this.handleCompanyChange} checked={this.state.isCompany}/>
                         </div>
                     </div>
